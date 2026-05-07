@@ -1,22 +1,32 @@
 openapi: 3.1.0
 info:
-  # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
-  description: API specification
+  description: Kokpit Okulları API
 servers:
   - url: /api
     description: Base API path
 tags:
   - name: health
     description: Health operations
+  - name: haberler
+    description: Haber yönetimi
+  - name: duyurular
+    description: Duyuru yönetimi
+  - name: etkinlikler
+    description: Etkinlik yönetimi
+  - name: fotogaleri
+    description: Fotoğraf galerisi yönetimi
+  - name: videogaleri
+    description: Video galerisi yönetimi
+  - name: auth
+    description: Admin kimlik doğrulama
 paths:
   /healthz:
     get:
       operationId: healthCheck
       tags: [health]
       summary: Health check
-      description: Returns server health status
       responses:
         "200":
           description: Healthy
@@ -24,6 +34,522 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+
+  /auth/login:
+    post:
+      operationId: adminLogin
+      tags: [auth]
+      summary: Admin girişi
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginBody"
+      responses:
+        "200":
+          description: Giriş başarılı
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/LoginResponse"
+        "401":
+          description: Geçersiz şifre
+
+  /auth/logout:
+    post:
+      operationId: adminLogout
+      tags: [auth]
+      summary: Admin çıkışı
+      responses:
+        "200":
+          description: Çıkış başarılı
+
+  /auth/me:
+    get:
+      operationId: getAdminMe
+      tags: [auth]
+      summary: Mevcut oturum durumu
+      responses:
+        "200":
+          description: Oturum bilgisi
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MeResponse"
+
+  /haberler:
+    get:
+      operationId: listHaberler
+      tags: [haberler]
+      summary: Tüm haberler
+      parameters:
+        - name: kategori
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: yayinda
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Haber listesi
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Haber"
+    post:
+      operationId: createHaber
+      tags: [haberler]
+      summary: Yeni haber oluştur
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateHaberBody"
+      responses:
+        "201":
+          description: Oluşturuldu
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Haber"
+
+  /haberler/{id}:
+    get:
+      operationId: getHaber
+      tags: [haberler]
+      summary: Haber detayı
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Haber
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Haber"
+        "404":
+          description: Bulunamadı
+    patch:
+      operationId: updateHaber
+      tags: [haberler]
+      summary: Haberi güncelle
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateHaberBody"
+      responses:
+        "200":
+          description: Güncellendi
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Haber"
+        "404":
+          description: Bulunamadı
+    delete:
+      operationId: deleteHaber
+      tags: [haberler]
+      summary: Haberi sil
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Silindi
+        "404":
+          description: Bulunamadı
+
+  /duyurular:
+    get:
+      operationId: listDuyurular
+      tags: [duyurular]
+      summary: Tüm duyurular
+      parameters:
+        - name: yayinda
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Duyuru listesi
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Duyuru"
+    post:
+      operationId: createDuyuru
+      tags: [duyurular]
+      summary: Yeni duyuru oluştur
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateDuyuruBody"
+      responses:
+        "201":
+          description: Oluşturuldu
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Duyuru"
+
+  /duyurular/{id}:
+    get:
+      operationId: getDuyuru
+      tags: [duyurular]
+      summary: Duyuru detayı
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Duyuru
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Duyuru"
+        "404":
+          description: Bulunamadı
+    patch:
+      operationId: updateDuyuru
+      tags: [duyurular]
+      summary: Duyuruyu güncelle
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateDuyuruBody"
+      responses:
+        "200":
+          description: Güncellendi
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Duyuru"
+        "404":
+          description: Bulunamadı
+    delete:
+      operationId: deleteDuyuru
+      tags: [duyurular]
+      summary: Duyuruyu sil
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Silindi
+        "404":
+          description: Bulunamadı
+
+  /etkinlikler:
+    get:
+      operationId: listEtkinlikler
+      tags: [etkinlikler]
+      summary: Tüm etkinlikler
+      parameters:
+        - name: yayinda
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Etkinlik listesi
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Etkinlik"
+    post:
+      operationId: createEtkinlik
+      tags: [etkinlikler]
+      summary: Yeni etkinlik oluştur
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateEtkinlikBody"
+      responses:
+        "201":
+          description: Oluşturuldu
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Etkinlik"
+
+  /etkinlikler/{id}:
+    get:
+      operationId: getEtkinlik
+      tags: [etkinlikler]
+      summary: Etkinlik detayı
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Etkinlik
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Etkinlik"
+        "404":
+          description: Bulunamadı
+    patch:
+      operationId: updateEtkinlik
+      tags: [etkinlikler]
+      summary: Etkinliği güncelle
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateEtkinlikBody"
+      responses:
+        "200":
+          description: Güncellendi
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Etkinlik"
+        "404":
+          description: Bulunamadı
+    delete:
+      operationId: deleteEtkinlik
+      tags: [etkinlikler]
+      summary: Etkinliği sil
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Silindi
+        "404":
+          description: Bulunamadı
+
+  /foto-galeri:
+    get:
+      operationId: listFotoGaleri
+      tags: [fotogaleri]
+      summary: Tüm fotoğraflar
+      parameters:
+        - name: kategori
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: yayinda
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Fotoğraf listesi
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/FotoGaleri"
+    post:
+      operationId: createFotoGaleri
+      tags: [fotogaleri]
+      summary: Yeni fotoğraf ekle
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateFotoGaleriBody"
+      responses:
+        "201":
+          description: Oluşturuldu
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FotoGaleri"
+
+  /foto-galeri/{id}:
+    patch:
+      operationId: updateFotoGaleri
+      tags: [fotogaleri]
+      summary: Fotoğrafı güncelle
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateFotoGaleriBody"
+      responses:
+        "200":
+          description: Güncellendi
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/FotoGaleri"
+        "404":
+          description: Bulunamadı
+    delete:
+      operationId: deleteFotoGaleri
+      tags: [fotogaleri]
+      summary: Fotoğrafı sil
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Silindi
+        "404":
+          description: Bulunamadı
+
+  /video-galeri:
+    get:
+      operationId: listVideoGaleri
+      tags: [videogaleri]
+      summary: Tüm videolar
+      parameters:
+        - name: kategori
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: yayinda
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Video listesi
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/VideoGaleri"
+    post:
+      operationId: createVideoGaleri
+      tags: [videogaleri]
+      summary: Yeni video ekle
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateVideoGaleriBody"
+      responses:
+        "201":
+          description: Oluşturuldu
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/VideoGaleri"
+
+  /video-galeri/{id}:
+    patch:
+      operationId: updateVideoGaleri
+      tags: [videogaleri]
+      summary: Videoyu güncelle
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateVideoGaleriBody"
+      responses:
+        "200":
+          description: Güncellendi
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/VideoGaleri"
+        "404":
+          description: Bulunamadı
+    delete:
+      operationId: deleteVideoGaleri
+      tags: [videogaleri]
+      summary: Videoyu sil
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Silindi
+        "404":
+          description: Bulunamadı
+
 components:
   schemas:
     HealthStatus:
@@ -34,3 +560,364 @@ components:
       required:
         - status
 
+    LoginBody:
+      type: object
+      properties:
+        password:
+          type: string
+      required:
+        - password
+
+    LoginResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
+      required:
+        - ok
+
+    MeResponse:
+      type: object
+      properties:
+        loggedIn:
+          type: boolean
+      required:
+        - loggedIn
+
+    Haber:
+      type: object
+      properties:
+        id:
+          type: integer
+        baslik:
+          type: string
+        ozet:
+          type: string
+        icerik:
+          type: string
+        resimUrl:
+          type: ["string", "null"]
+        kategori:
+          type: string
+        yayinda:
+          type: boolean
+        onemli:
+          type: boolean
+        yayinTarihi:
+          type: string
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required:
+        - id
+        - baslik
+        - ozet
+        - icerik
+        - kategori
+        - yayinda
+        - onemli
+        - yayinTarihi
+        - createdAt
+        - updatedAt
+
+    CreateHaberBody:
+      type: object
+      properties:
+        baslik:
+          type: string
+        ozet:
+          type: string
+        icerik:
+          type: string
+        resimUrl:
+          type: ["string", "null"]
+        kategori:
+          type: string
+        yayinda:
+          type: boolean
+        onemli:
+          type: boolean
+        yayinTarihi:
+          type: string
+      required:
+        - baslik
+        - ozet
+        - icerik
+        - kategori
+
+    UpdateHaberBody:
+      type: object
+      properties:
+        baslik:
+          type: string
+        ozet:
+          type: string
+        icerik:
+          type: string
+        resimUrl:
+          type: ["string", "null"]
+        kategori:
+          type: string
+        yayinda:
+          type: boolean
+        onemli:
+          type: boolean
+        yayinTarihi:
+          type: string
+
+    Duyuru:
+      type: object
+      properties:
+        id:
+          type: integer
+        baslik:
+          type: string
+        icerik:
+          type: string
+        onemli:
+          type: boolean
+        yayinda:
+          type: boolean
+        yayinTarihi:
+          type: string
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required:
+        - id
+        - baslik
+        - icerik
+        - onemli
+        - yayinda
+        - yayinTarihi
+        - createdAt
+        - updatedAt
+
+    CreateDuyuruBody:
+      type: object
+      properties:
+        baslik:
+          type: string
+        icerik:
+          type: string
+        onemli:
+          type: boolean
+        yayinda:
+          type: boolean
+        yayinTarihi:
+          type: string
+      required:
+        - baslik
+        - icerik
+
+    UpdateDuyuruBody:
+      type: object
+      properties:
+        baslik:
+          type: string
+        icerik:
+          type: string
+        onemli:
+          type: boolean
+        yayinda:
+          type: boolean
+        yayinTarihi:
+          type: string
+
+    Etkinlik:
+      type: object
+      properties:
+        id:
+          type: integer
+        baslik:
+          type: string
+        aciklama:
+          type: string
+        resimUrl:
+          type: ["string", "null"]
+        tarih:
+          type: string
+        yer:
+          type: ["string", "null"]
+        kategori:
+          type: string
+        yayinda:
+          type: boolean
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required:
+        - id
+        - baslik
+        - aciklama
+        - tarih
+        - kategori
+        - yayinda
+        - createdAt
+        - updatedAt
+
+    CreateEtkinlikBody:
+      type: object
+      properties:
+        baslik:
+          type: string
+        aciklama:
+          type: string
+        resimUrl:
+          type: ["string", "null"]
+        tarih:
+          type: string
+        yer:
+          type: ["string", "null"]
+        kategori:
+          type: string
+        yayinda:
+          type: boolean
+      required:
+        - baslik
+        - aciklama
+        - tarih
+        - kategori
+
+    UpdateEtkinlikBody:
+      type: object
+      properties:
+        baslik:
+          type: string
+        aciklama:
+          type: string
+        resimUrl:
+          type: ["string", "null"]
+        tarih:
+          type: string
+        yer:
+          type: ["string", "null"]
+        kategori:
+          type: string
+        yayinda:
+          type: boolean
+
+    FotoGaleri:
+      type: object
+      properties:
+        id:
+          type: integer
+        baslik:
+          type: string
+        resimUrl:
+          type: string
+        kategori:
+          type: string
+        yayinda:
+          type: boolean
+        sira:
+          type: integer
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required:
+        - id
+        - baslik
+        - resimUrl
+        - kategori
+        - yayinda
+        - sira
+        - createdAt
+        - updatedAt
+
+    CreateFotoGaleriBody:
+      type: object
+      properties:
+        baslik:
+          type: string
+        resimUrl:
+          type: string
+        kategori:
+          type: string
+        yayinda:
+          type: boolean
+        sira:
+          type: integer
+      required:
+        - baslik
+        - resimUrl
+        - kategori
+
+    UpdateFotoGaleriBody:
+      type: object
+      properties:
+        baslik:
+          type: string
+        resimUrl:
+          type: string
+        kategori:
+          type: string
+        yayinda:
+          type: boolean
+        sira:
+          type: integer
+
+    VideoGaleri:
+      type: object
+      properties:
+        id:
+          type: integer
+        baslik:
+          type: string
+        youtubeId:
+          type: string
+        kategori:
+          type: string
+        yayinda:
+          type: boolean
+        sira:
+          type: integer
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required:
+        - id
+        - baslik
+        - youtubeId
+        - kategori
+        - yayinda
+        - sira
+        - createdAt
+        - updatedAt
+
+    CreateVideoGaleriBody:
+      type: object
+      properties:
+        baslik:
+          type: string
+        youtubeId:
+          type: string
+        kategori:
+          type: string
+        yayinda:
+          type: boolean
+        sira:
+          type: integer
+      required:
+        - baslik
+        - youtubeId
+        - kategori
+
+    UpdateVideoGaleriBody:
+      type: object
+      properties:
+        baslik:
+          type: string
+        youtubeId:
+          type: string
+        kategori:
+          type: string
+        yayinda:
+          type: boolean
+        sira:
+          type: integer
