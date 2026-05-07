@@ -14,7 +14,14 @@ interface Kullanici {
   createdAt: string;
 }
 
-const empty = { ad: "", soyad: "", email: "", telefon: "", rol: "veli", sinif: "", sifre: "", aktif: true, notlar: "" };
+const bos = { ad: "", soyad: "", email: "", telefon: "", rol: "veli", sinif: "", sifre: "", aktif: true, notlar: "" };
+
+const ROL_ETIKET: Record<string, string> = {
+  veli: "Veli",
+  ogrenci: "Öğrenci",
+  ogretmen: "Öğretmen",
+  yonetici: "Yönetici",
+};
 
 const ROL_RENK: Record<string, string> = {
   veli: "bg-blue-50 text-blue-700",
@@ -26,59 +33,52 @@ const ROL_RENK: Record<string, string> = {
 export default function KullanicilarPage() {
   const [data, setData] = useState<Kullanici[]>([]);
   const [loading, setLoading] = useState(true);
-  const [modal, setModal] = useState<"add" | "edit" | null>(null);
-  const [form, setForm] = useState<Partial<Kullanici & { sifre: string }>>(empty);
-  const [saving, setSaving] = useState(false);
-  const [error, setError] = useState("");
+  const [modal, setModal] = useState<"ekle" | "duzenle" | null>(null);
+  const [form, setForm] = useState<Partial<Kullanici & { sifre: string }>>(bos);
+  const [kaydediliyor, setKaydediliyor] = useState(false);
+  const [hata, setHata] = useState("");
   const [filtre, setFiltre] = useState({ rol: "", arama: "" });
-  const [deleteId, setDeleteId] = useState<number | null>(null);
+  const [silinecekId, setSilinecekId] = useState<number | null>(null);
 
-  const load = useCallback(async () => {
+  const yukle = useCallback(async () => {
     setLoading(true);
     let url = "/api/kullanicilar";
     if (filtre.rol) url += `?rol=${filtre.rol}`;
-    const res = await fetch(url, { credentials: "include" });
-    setData(await res.json());
+    const r = await fetch(url, { credentials: "include" });
+    setData(await r.json());
     setLoading(false);
   }, [filtre.rol]);
 
-  useEffect(() => { load(); }, [load]);
+  useEffect(() => { yukle(); }, [yukle]);
 
-  function openAdd() { setForm({ ...empty }); setModal("add"); setError(""); }
-  function openEdit(row: Kullanici) {
-    setForm({ ...row, sifre: "" });
-    setModal("edit");
-    setError("");
-  }
+  function ekleAc() { setForm({ ...bos }); setModal("ekle"); setHata(""); }
+  function duzenleAc(k: Kullanici) { setForm({ ...k, sifre: "" }); setModal("duzenle"); setHata(""); }
 
-  async function save() {
-    setSaving(true); setError("");
+  async function kaydet() {
+    setKaydediliyor(true); setHata("");
     try {
-      const url = modal === "edit" ? `/api/kullanicilar/${form.id}` : "/api/kullanicilar";
-      const method = modal === "edit" ? "PATCH" : "POST";
+      const url = modal === "duzenle" ? `/api/kullanicilar/${form.id}` : "/api/kullanicilar";
+      const method = modal === "duzenle" ? "PATCH" : "POST";
       const payload: Record<string, unknown> = { ...form };
       if (!payload.sifre) delete payload.sifre;
       payload.telefon = payload.telefon || null;
       payload.sinif = payload.sinif || null;
       payload.notlar = payload.notlar || null;
-      const res = await fetch(url, { method, headers: { "Content-Type": "application/json" }, credentials: "include", body: JSON.stringify(payload) });
-      if (!res.ok) { const d = await res.json(); setError(d.error || "Hata"); return; }
-      setModal(null); load();
-    } finally { setSaving(false); }
+      const r = await fetch(url, { method, headers: { "Content-Type": "application/json" }, credentials: "include", body: JSON.stringify(payload) });
+      if (!r.ok) { const d = await r.json(); setHata(d.error || "Bir hata oluştu"); return; }
+      setModal(null); yukle();
+    } finally { setKaydediliyor(false); }
   }
 
-  async function del(id: number) {
+  async function sil(id: number) {
     await fetch(`/api/kullanicilar/${id}`, { method: "DELETE", credentials: "include" });
-    setDeleteId(null);
-    load();
+    setSilinecekId(null); yukle();
   }
 
-  const displayed = data.filter(k => {
-    if (filtre.arama) {
-      const q = filtre.arama.toLowerCase();
-      return k.ad.toLowerCase().includes(q) || k.soyad.toLowerCase().includes(q) || k.email.toLowerCase().includes(q);
-    }
-    return true;
+  const gorunenler = data.filter(k => {
+    if (!filtre.arama) return true;
+    const q = filtre.arama.toLowerCase();
+    return k.ad.toLowerCase().includes(q) || k.soyad.toLowerCase().includes(q) || k.email.toLowerCase().includes(q);
   });
 
   const sayilar = {
@@ -94,21 +94,21 @@ export default function KullanicilarPage() {
         <div className="flex items-center justify-between mb-6">
           <div>
             <h2 className="text-2xl font-bold text-gray-900">Kullanıcı Yönetimi</h2>
-            <p className="text-sm text-gray-500 mt-1">Veli, öğrenci ve öğretmen hesapları</p>
+            <p className="text-sm text-gray-500 mt-1">Veli, öğrenci ve öğretmen hesaplarını buradan yönetin.</p>
           </div>
-          <button onClick={openAdd} className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg flex items-center gap-2">
+          <button onClick={ekleAc} className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg flex items-center gap-2">
             + Kullanıcı Ekle
           </button>
         </div>
 
         <div className="grid grid-cols-4 gap-4 mb-6">
           {[
-            { label: "Toplam", value: sayilar.toplam, color: "bg-gray-50 text-gray-700" },
-            { label: "Veli", value: sayilar.veli, color: "bg-blue-50 text-blue-700" },
-            { label: "Öğrenci", value: sayilar.ogrenci, color: "bg-green-50 text-green-700" },
-            { label: "Öğretmen", value: sayilar.ogretmen, color: "bg-purple-50 text-purple-700" },
+            { label: "Toplam", value: sayilar.toplam, bg: "bg-gray-50", text: "text-gray-700" },
+            { label: "Veli", value: sayilar.veli, bg: "bg-blue-50", text: "text-blue-700" },
+            { label: "Öğrenci", value: sayilar.ogrenci, bg: "bg-green-50", text: "text-green-700" },
+            { label: "Öğretmen", value: sayilar.ogretmen, bg: "bg-purple-50", text: "text-purple-700" },
           ].map(s => (
-            <div key={s.label} className={`${s.color} rounded-xl p-4`}>
+            <div key={s.label} className={`${s.bg} ${s.text} rounded-xl p-4`}>
               <div className="text-2xl font-bold">{loading ? "—" : s.value}</div>
               <div className="text-sm font-medium mt-1">{s.label}</div>
             </div>
@@ -118,7 +118,7 @@ export default function KullanicilarPage() {
         <div className="flex gap-3 mb-4">
           <input
             type="text"
-            placeholder="Ad, soyad veya e-posta ara..."
+            placeholder="Ad, soyad veya e-posta ile ara..."
             className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             value={filtre.arama}
             onChange={e => setFiltre(f => ({ ...f, arama: e.target.value }))}
@@ -138,10 +138,10 @@ export default function KullanicilarPage() {
 
         {loading ? (
           <div className="bg-white rounded-xl border border-gray-200 p-12 text-center text-gray-400">Yükleniyor...</div>
-        ) : displayed.length === 0 ? (
+        ) : gorunenler.length === 0 ? (
           <div className="bg-white rounded-xl border border-gray-200 p-12 text-center">
             <p className="text-gray-400 text-sm">Kullanıcı bulunamadı.</p>
-            <button onClick={openAdd} className="mt-3 text-blue-600 text-sm hover:underline">İlk kullanıcıyı ekle →</button>
+            <button onClick={ekleAc} className="mt-3 text-blue-600 text-sm hover:underline">İlk kullanıcıyı ekle →</button>
           </div>
         ) : (
           <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
@@ -157,32 +157,32 @@ export default function KullanicilarPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100">
-                {displayed.map(k => (
+                {gorunenler.map(k => (
                   <tr key={k.id} className="hover:bg-gray-50">
                     <td className="px-4 py-3 font-medium text-gray-900">{k.ad} {k.soyad}</td>
-                    <td className="px-4 py-3 text-gray-500">{k.email}</td>
+                    <td className="px-4 py-3 text-gray-500 text-xs">{k.email}</td>
                     <td className="px-4 py-3">
                       <span className={`px-2 py-0.5 rounded text-xs font-medium ${ROL_RENK[k.rol] || "bg-gray-100 text-gray-600"}`}>
-                        {k.rol.charAt(0).toUpperCase() + k.rol.slice(1)}
+                        {ROL_ETIKET[k.rol] || k.rol}
                       </span>
                     </td>
-                    <td className="px-4 py-3 text-gray-500">{k.sinif || "—"}</td>
+                    <td className="px-4 py-3 text-gray-500 text-xs">{k.sinif || "—"}</td>
                     <td className="px-4 py-3">
                       <span className={`px-2 py-0.5 rounded text-xs font-medium ${k.aktif ? "bg-green-50 text-green-700" : "bg-red-50 text-red-700"}`}>
                         {k.aktif ? "Aktif" : "Pasif"}
                       </span>
                     </td>
                     <td className="px-4 py-3 text-right">
-                      {deleteId === k.id ? (
+                      {silinecekId === k.id ? (
                         <span className="flex items-center gap-2 justify-end">
-                          <span className="text-xs text-gray-500">Emin misiniz?</span>
-                          <button onClick={() => del(k.id)} className="text-xs text-red-600 hover:underline font-medium">Evet</button>
-                          <button onClick={() => setDeleteId(null)} className="text-xs text-gray-500 hover:underline">Hayır</button>
+                          <span className="text-xs text-gray-500">Silinsin mi?</span>
+                          <button onClick={() => sil(k.id)} className="text-xs text-red-600 hover:underline font-medium">Evet, sil</button>
+                          <button onClick={() => setSilinecekId(null)} className="text-xs text-gray-500 hover:underline">Vazgeç</button>
                         </span>
                       ) : (
                         <span className="flex items-center gap-2 justify-end">
-                          <button onClick={() => openEdit(k)} className="text-blue-600 hover:text-blue-800 text-xs font-medium">Düzenle</button>
-                          <button onClick={() => setDeleteId(k.id)} className="text-red-500 hover:text-red-700 text-xs font-medium">Sil</button>
+                          <button onClick={() => duzenleAc(k)} className="text-blue-600 hover:text-blue-800 text-xs font-medium">Düzenle</button>
+                          <button onClick={() => setSilinecekId(k.id)} className="text-red-500 hover:text-red-700 text-xs font-medium">Sil</button>
                         </span>
                       )}
                     </td>
@@ -195,9 +195,9 @@ export default function KullanicilarPage() {
       </div>
 
       {modal && (
-        <Modal title={modal === "add" ? "Yeni Kullanıcı" : "Kullanıcıyı Düzenle"} onClose={() => setModal(null)}>
+        <Modal title={modal === "ekle" ? "Yeni Kullanıcı" : "Kullanıcıyı Düzenle"} onClose={() => setModal(null)}>
           <div className="space-y-4">
-            {error && <div className="bg-red-50 border border-red-200 text-red-700 text-sm rounded-lg px-4 py-3">{error}</div>}
+            {hata && <div className="bg-red-50 border border-red-200 text-red-700 text-sm rounded-lg px-4 py-3">{hata}</div>}
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Ad *</label>
@@ -215,7 +215,8 @@ export default function KullanicilarPage() {
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  {modal === "edit" ? "Yeni Şifre (boş bırakın = değişmez)" : "Şifre *"}
+                  {modal === "duzenle" ? "Yeni Şifre" : "Şifre *"}
+                  {modal === "duzenle" && <span className="text-gray-400 font-normal ml-1">(boş = değişmez)</span>}
                 </label>
                 <input type="password" autoComplete="new-password" className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" value={form.sifre || ""} onChange={e => setForm(f => ({ ...f, sifre: e.target.value }))} />
               </div>
@@ -241,14 +242,14 @@ export default function KullanicilarPage() {
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">Notlar</label>
-              <textarea rows={2} className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" value={form.notlar || ""} onChange={e => setForm(f => ({ ...f, notlar: e.target.value }))} placeholder="İç notlar..." />
+              <textarea rows={2} className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" value={form.notlar || ""} onChange={e => setForm(f => ({ ...f, notlar: e.target.value }))} placeholder="Yalnızca admin tarafından görülen notlar..." />
             </div>
             <label className="flex items-center gap-2 text-sm cursor-pointer">
               <input type="checkbox" checked={form.aktif ?? true} onChange={e => setForm(f => ({ ...f, aktif: e.target.checked }))} className="rounded" />
-              Hesap Aktif (giriş yapabilir)
+              Hesap aktif (sisteme giriş yapabilir)
             </label>
             <div className="flex gap-3 pt-2">
-              <button onClick={save} disabled={saving} className="px-5 py-2 bg-blue-600 hover:bg-blue-700 disabled:opacity-60 text-white text-sm font-medium rounded-lg">{saving ? "Kaydediliyor..." : "Kaydet"}</button>
+              <button onClick={kaydet} disabled={kaydediliyor} className="px-5 py-2 bg-blue-600 hover:bg-blue-700 disabled:opacity-60 text-white text-sm font-medium rounded-lg">{kaydediliyor ? "Kaydediliyor..." : "Kaydet"}</button>
               <button onClick={() => setModal(null)} className="px-5 py-2 border border-gray-300 text-gray-700 text-sm rounded-lg hover:bg-gray-50">İptal</button>
             </div>
           </div>

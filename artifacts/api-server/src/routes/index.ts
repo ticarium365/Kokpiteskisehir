@@ -10,11 +10,13 @@ import sliderRouter from "./slider";
 import ekipRouter from "./ekip";
 import sayfaIcerikleriRouter from "./sayfa-icerikleri";
 import kullanicilarRouter from "./kullanicilar";
+import storageRouter from "./storage";
 
 const router: IRouter = Router();
 
 router.use(healthRouter);
 router.use(authRouter);
+router.use(storageRouter);
 router.use(haberlerRouter);
 router.use(duyurularRouter);
 router.use(etkinliklerRouter);

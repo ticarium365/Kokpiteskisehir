@@ -8,6 +8,7 @@ interface Column {
 
 interface Props {
   title: string;
+  description?: string;
   data: Record<string, unknown>[];
   columns: Column[];
   loading?: boolean;
@@ -17,12 +18,8 @@ interface Props {
   addLabel?: string;
 }
 
-export default function ContentTable({ title, data, columns, loading, onAdd, onEdit, onDelete, addLabel = "Yeni Ekle" }: Props) {
+export default function ContentTable({ title, description, data, columns, loading, onAdd, onEdit, onDelete, addLabel = "Yeni Ekle" }: Props) {
   const [deleteId, setDeleteId] = useState<unknown>(null);
-
-  function handleDelete(row: Record<string, unknown>) {
-    setDeleteId(row.id);
-  }
 
   function confirmDelete(row: Record<string, unknown>) {
     onDelete(row);
@@ -31,11 +28,14 @@ export default function ContentTable({ title, data, columns, loading, onAdd, onE
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-bold text-gray-900">{title}</h2>
+      <div className="flex items-start justify-between mb-6">
+        <div>
+          <h2 className="text-2xl font-bold text-gray-900">{title}</h2>
+          {description && <p className="text-sm text-gray-500 mt-1">{description}</p>}
+        </div>
         <button
           onClick={onAdd}
-          className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors flex items-center gap-2"
+          className="shrink-0 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg transition-colors flex items-center gap-2 ml-4"
         >
           <span>+</span> {addLabel}
         </button>
@@ -58,11 +58,11 @@ export default function ContentTable({ title, data, columns, loading, onAdd, onE
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-b border-gray-100 bg-gray-50">
-                  {columns.map((col) => (
+                  {columns.map((col) => col.label ? (
                     <th key={col.key} className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wider">
                       {col.label}
                     </th>
-                  ))}
+                  ) : <th key={col.key} className="px-4 py-3" />)}
                   <th className="px-4 py-3 text-right text-xs font-semibold text-gray-500 uppercase tracking-wider">
                     İşlemler
                   </th>
@@ -79,24 +79,14 @@ export default function ContentTable({ title, data, columns, loading, onAdd, onE
                     <td className="px-4 py-3 text-right">
                       {deleteId === row.id ? (
                         <span className="flex items-center gap-2 justify-end">
-                          <span className="text-xs text-gray-500">Emin misiniz?</span>
-                          <button onClick={() => confirmDelete(row)} className="text-xs text-red-600 hover:underline font-medium">Evet</button>
-                          <button onClick={() => setDeleteId(null)} className="text-xs text-gray-500 hover:underline">Hayır</button>
+                          <span className="text-xs text-gray-500">Silinsin mi?</span>
+                          <button onClick={() => confirmDelete(row)} className="text-xs text-red-600 hover:underline font-medium">Evet, sil</button>
+                          <button onClick={() => setDeleteId(null)} className="text-xs text-gray-500 hover:underline">Vazgeç</button>
                         </span>
                       ) : (
                         <span className="flex items-center gap-2 justify-end">
-                          <button
-                            onClick={() => onEdit(row)}
-                            className="text-blue-600 hover:text-blue-800 text-xs font-medium"
-                          >
-                            Düzenle
-                          </button>
-                          <button
-                            onClick={() => handleDelete(row)}
-                            className="text-red-500 hover:text-red-700 text-xs font-medium"
-                          >
-                            Sil
-                          </button>
+                          <button onClick={() => onEdit(row)} className="text-blue-600 hover:text-blue-800 text-xs font-medium">Düzenle</button>
+                          <button onClick={() => setDeleteId(row.id)} className="text-red-500 hover:text-red-700 text-xs font-medium">Sil</button>
                         </span>
                       )}
                     </td>

@@ -11,73 +11,119 @@ interface VideoGaleri {
   sira: number;
 }
 
-const empty = { baslik: "", youtubeId: "", kategori: "genel", yayinda: true, sira: 0 };
+const bos = { baslik: "", youtubeId: "", kategori: "genel", yayinda: true, sira: 0 };
+
+function youtubeIdCikar(girdi: string): string {
+  if (!girdi) return "";
+  const patterns = [
+    /(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([a-zA-Z0-9_-]{11})/,
+    /^([a-zA-Z0-9_-]{11})$/,
+  ];
+  for (const p of patterns) {
+    const m = girdi.match(p);
+    if (m) return m[1];
+  }
+  return girdi;
+}
 
 export default function VideoGaleriPage() {
   const [data, setData] = useState<VideoGaleri[]>([]);
   const [loading, setLoading] = useState(true);
-  const [modal, setModal] = useState<"add" | "edit" | null>(null);
-  const [form, setForm] = useState<Partial<VideoGaleri>>(empty);
-  const [saving, setSaving] = useState(false);
-  const [error, setError] = useState("");
+  const [modal, setModal] = useState<"ekle" | "duzenle" | null>(null);
+  const [form, setForm] = useState<Partial<VideoGaleri>>(bos);
+  const [youtubeGirdi, setYoutubeGirdi] = useState("");
+  const [kaydediliyor, setKaydediliyor] = useState(false);
+  const [hata, setHata] = useState("");
 
-  const load = useCallback(async () => {
+  const yukle = useCallback(async () => {
     setLoading(true);
-    const res = await fetch("/api/video-galeri", { credentials: "include" });
-    setData(await res.json());
+    const r = await fetch("/api/video-galeri", { credentials: "include" });
+    setData(await r.json());
     setLoading(false);
   }, []);
 
-  useEffect(() => { load(); }, [load]);
+  useEffect(() => { yukle(); }, [yukle]);
 
-  function openAdd() { setForm({ ...empty }); setModal("add"); setError(""); }
-  function openEdit(row: Record<string, unknown>) { setForm(row as unknown as VideoGaleri); setModal("edit"); setError(""); }
+  function ekleAc() { setForm({ ...bos }); setYoutubeGirdi(""); setModal("ekle"); setHata(""); }
+  function duzenleAc(row: Record<string, unknown>) {
+    const v = row as unknown as VideoGaleri;
+    setForm(v); setYoutubeGirdi(v.youtubeId || "");
+    setModal("duzenle"); setHata("");
+  }
 
-  async function save() {
-    setSaving(true); setError("");
+  function youtubeGirdiDegisti(deger: string) {
+    setYoutubeGirdi(deger);
+    const id = youtubeIdCikar(deger);
+    setForm(f => ({ ...f, youtubeId: id }));
+  }
+
+  async function kaydet() {
+    setKaydediliyor(true); setHata("");
     try {
-      const url = modal === "edit" ? `/api/video-galeri/${form.id}` : "/api/video-galeri";
-      const method = modal === "edit" ? "PATCH" : "POST";
-      const res = await fetch(url, { method, headers: { "Content-Type": "application/json" }, credentials: "include", body: JSON.stringify(form) });
-      if (!res.ok) { const d = await res.json(); setError(d.error || "Hata"); return; }
-      setModal(null); load();
-    } finally { setSaving(false); }
+      const url = modal === "duzenle" ? `/api/video-galeri/${form.id}` : "/api/video-galeri";
+      const method = modal === "duzenle" ? "PATCH" : "POST";
+      const r = await fetch(url, { method, headers: { "Content-Type": "application/json" }, credentials: "include", body: JSON.stringify(form) });
+      if (!r.ok) { const d = await r.json(); setHata(d.error || "Bir hata oluştu"); return; }
+      setModal(null); yukle();
+    } finally { setKaydediliyor(false); }
   }
 
-  async function del(row: Record<string, unknown>) {
+  async function sil(row: Record<string, unknown>) {
     await fetch(`/api/video-galeri/${row.id}`, { method: "DELETE", credentials: "include" });
-    load();
+    yukle();
   }
 
-  const columns = [
-    { key: "youtubeId", label: "Önizleme", render: (v: unknown) => <img src={`https://img.youtube.com/vi/${v}/default.jpg`} alt="" className="w-16 h-10 object-cover rounded" /> },
-    { key: "baslik", label: "Başlık", render: (v: unknown) => <span className="font-medium">{String(v)}</span> },
-    { key: "youtubeId", label: "YouTube ID", render: (v: unknown) => <a href={`https://youtube.com/watch?v=${v}`} target="_blank" rel="noreferrer" className="text-blue-600 hover:underline text-xs">{String(v)}</a> },
-    { key: "kategori", label: "Kategori", render: (v: unknown) => <span className="px-2 py-0.5 bg-red-50 text-red-700 rounded text-xs">{String(v)}</span> },
-    { key: "yayinda", label: "Durum", render: (v: unknown) => <span className={`px-2 py-0.5 rounded text-xs font-medium ${v ? "bg-green-50 text-green-700" : "bg-gray-100 text-gray-500"}`}>{v ? "Yayında" : "Gizli"}</span> },
+  const kolonlar = [
+    {
+      key: "youtubeId", label: "Önizleme",
+      render: (v: unknown) => <img src={`https://img.youtube.com/vi/${v}/mqdefault.jpg`} alt="" className="w-20 h-12 object-cover rounded-lg" />
+    },
+    { key: "baslik", label: "Video Başlığı", render: (v: unknown) => <span className="font-medium">{String(v)}</span> },
+    {
+      key: "youtubeId", label: "YouTube",
+      render: (v: unknown) => <a href={`https://youtube.com/watch?v=${v}`} target="_blank" rel="noreferrer" className="text-blue-600 hover:underline text-xs">İzle →</a>
+    },
+    { key: "kategori", label: "Kategori", render: (v: unknown) => <span className="px-2 py-0.5 bg-red-50 text-red-700 rounded text-xs capitalize">{String(v)}</span> },
+    { key: "yayinda", label: "Durum", render: (v: unknown) => <span className={`px-2 py-0.5 rounded text-xs font-medium ${v ? "bg-green-50 text-green-700" : "bg-gray-100 text-gray-500"}`}>{v ? "Görünür" : "Gizli"}</span> },
   ];
 
   return (
     <>
-      <ContentTable title="Video Galerisi" data={data as unknown as Record<string, unknown>[]} columns={columns} loading={loading} onAdd={openAdd} onEdit={openEdit} onDelete={del} addLabel="Video Ekle" />
+      <ContentTable
+        title="Video Galerisi" data={data as unknown as Record<string, unknown>[]}
+        columns={kolonlar} loading={loading} onAdd={ekleAc} onEdit={duzenleAc} onDelete={sil}
+        addLabel="Video Ekle"
+        description="YouTube videolarınızı buraya ekleyin. Sadece YouTube linkini yapıştırmanız yeterli."
+      />
       {modal && (
-        <Modal title={modal === "add" ? "Yeni Video" : "Videoyu Düzenle"} onClose={() => setModal(null)}>
+        <Modal title={modal === "ekle" ? "Yeni Video" : "Videoyu Düzenle"} onClose={() => setModal(null)}>
           <div className="space-y-4">
-            {error && <div className="bg-red-50 border border-red-200 text-red-700 text-sm rounded-lg px-4 py-3">{error}</div>}
+            {hata && <div className="bg-red-50 border border-red-200 text-red-700 text-sm rounded-lg px-4 py-3">{hata}</div>}
+
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Başlık *</label>
-              <input className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" value={form.baslik || ""} onChange={e => setForm(f => ({ ...f, baslik: e.target.value }))} />
+              <label className="block text-sm font-medium text-gray-700 mb-1">Video Başlığı *</label>
+              <input className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" value={form.baslik || ""} onChange={e => setForm(f => ({ ...f, baslik: e.target.value }))} placeholder="Videonun başlığını yazın..." />
             </div>
+
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">YouTube Video ID *</label>
-              <input className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" value={form.youtubeId || ""} onChange={e => setForm(f => ({ ...f, youtubeId: e.target.value }))} placeholder="dQw4w9WgXcQ" />
-              <p className="text-xs text-gray-400 mt-1">YouTube linkindeki v= parametresindeki kısa kod (örn: youtube.com/watch?v=<strong>dQw4w9WgXcQ</strong>)</p>
+              <label className="block text-sm font-medium text-gray-700 mb-1">YouTube Linki *</label>
+              <input
+                className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                value={youtubeGirdi}
+                onChange={e => youtubeGirdiDegisti(e.target.value)}
+                placeholder="https://www.youtube.com/watch?v=..."
+              />
+              <p className="text-xs text-gray-400 mt-1">YouTube sayfasından kopyaladığınız linki yapıştırın.</p>
               {form.youtubeId && (
-                <div className="mt-2 aspect-video w-full max-w-xs">
-                  <img src={`https://img.youtube.com/vi/${form.youtubeId}/hqdefault.jpg`} alt="Önizleme" className="w-full h-full object-cover rounded-lg" />
+                <div className="mt-3 rounded-xl overflow-hidden border border-gray-200">
+                  <img src={`https://img.youtube.com/vi/${form.youtubeId}/hqdefault.jpg`} alt="Önizleme" className="w-full object-cover max-h-44" />
+                  <div className="px-3 py-2 bg-gray-50 text-xs text-gray-500 flex items-center gap-2">
+                    <span>🎬</span> Video bulundu
+                  </div>
                 </div>
               )}
             </div>
+
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">Kategori</label>
@@ -91,13 +137,18 @@ export default function VideoGaleriPage() {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Sıra No</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Sıra Numarası</label>
                 <input type="number" className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500" value={form.sira ?? 0} onChange={e => setForm(f => ({ ...f, sira: Number(e.target.value) }))} />
               </div>
             </div>
-            <label className="flex items-center gap-2 text-sm cursor-pointer"><input type="checkbox" checked={form.yayinda ?? true} onChange={e => setForm(f => ({ ...f, yayinda: e.target.checked }))} className="rounded" />Yayında</label>
+
+            <label className="flex items-center gap-2 text-sm cursor-pointer">
+              <input type="checkbox" checked={form.yayinda ?? true} onChange={e => setForm(f => ({ ...f, yayinda: e.target.checked }))} className="rounded" />
+              Galeride göster
+            </label>
+
             <div className="flex gap-3 pt-2">
-              <button onClick={save} disabled={saving} className="px-5 py-2 bg-blue-600 hover:bg-blue-700 disabled:opacity-60 text-white text-sm font-medium rounded-lg">{saving ? "Kaydediliyor..." : "Kaydet"}</button>
+              <button onClick={kaydet} disabled={kaydediliyor} className="px-5 py-2 bg-blue-600 hover:bg-blue-700 disabled:opacity-60 text-white text-sm font-medium rounded-lg">{kaydediliyor ? "Kaydediliyor..." : "Kaydet"}</button>
               <button onClick={() => setModal(null)} className="px-5 py-2 border border-gray-300 text-gray-700 text-sm rounded-lg hover:bg-gray-50">İptal</button>
             </div>
           </div>
