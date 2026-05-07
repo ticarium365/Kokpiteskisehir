@@ -6,22 +6,33 @@ import './ContactPage.css';
 
 const ContactPage = () => {
   const [formState, setFormState] = useState('idle'); // idle, submitting, success, error
-  // TODO: Replace with your actual Formspree form ID
-  const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+  const FORMSPREE_ENDPOINT = import.meta.env.VITE_FORMSPREE_ENDPOINT || '';
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setFormState('submitting');
+    if (!FORMSPREE_ENDPOINT) {
+      const formData = new FormData(e.target);
+      const phone = formData.get('phone') || '';
+      const name = formData.get('fullName') || '';
+      const interest = formData.get('interest') || '';
+      const message = formData.get('message') || '';
+      const waText = encodeURIComponent(
+        `Merhaba, bilgi almak istiyorum.\nAd Soyad: ${name}\nTelefon: ${phone}\nİlgilendiğim Alan: ${interest}\n${message}`
+      );
+      window.open(`https://wa.me/905305801525?text=${waText}`, '_blank');
+      setFormState('success');
+      e.target.reset();
+      return;
+    }
 
+    setFormState('submitting');
     const formData = new FormData(e.target);
 
     try {
       const response = await fetch(FORMSPREE_ENDPOINT, {
         method: 'POST',
         body: formData,
-        headers: {
-          'Accept': 'application/json'
-        }
+        headers: { 'Accept': 'application/json' }
       });
 
       if (response.ok) {

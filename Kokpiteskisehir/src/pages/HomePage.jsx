@@ -661,35 +661,44 @@ const HomePage = () => {
                 <h3 className="form-title">Hemen Başvurunu Yap</h3>
                 <p className="form-subtitle">Formu doldurun, eğitim danışmanlarımız sizi arasın.</p>
                 
-                <form className="premium-glass-form" onSubmit={(e) => e.preventDefault()}>
+                <form className="premium-glass-form" onSubmit={(e) => {
+                    e.preventDefault();
+                    const fd = new FormData(e.target);
+                    const name = fd.get('name') || '';
+                    const phone = fd.get('phone') || '';
+                    const interest = fd.get('interest') || '';
+                    const msg = fd.get('message') || '';
+                    const text = encodeURIComponent(`Merhaba, bilgi almak istiyorum.\nAd: ${name}\nTelefon: ${phone}\nAlan: ${interest}\n${msg}`);
+                    window.open(`https://wa.me/905305801525?text=${text}`, '_blank');
+                  }}>
                   <div className="form-group">
-                    <input type="text" className="glass-input" placeholder="Adınız Soyadınız" required />
+                    <input type="text" name="name" className="glass-input" placeholder="Adınız Soyadınız" required />
                   </div>
                   <div className="form-group">
-                    <input type="tel" className="glass-input" placeholder="Telefon Numarası" required />
+                    <input type="tel" name="phone" className="glass-input" placeholder="Telefon Numarası" required />
                   </div>
                   <div className="form-group">
-                    <input type="email" className="glass-input" placeholder="E-posta Adresiniz" />
+                    <input type="email" name="email" className="glass-input" placeholder="E-posta Adresiniz" />
                   </div>
                   <div className="form-group">
-                    <select className="glass-select" required defaultValue="">
+                    <select name="interest" className="glass-select" required defaultValue="">
                       <option value="" disabled>İlgilendiğiniz Alanı Seçin</option>
-                      <option value="havacilik">Havacılık Lisesi</option>
-                      <option value="yazilim">Matrix Yazılım Koleji</option>
-                      <option value="saglik">Sağlık Meslek Lisesi</option>
+                      <option value="Havacılık Lisesi">Havacılık Lisesi</option>
+                      <option value="Matrix Yazılım Koleji">Matrix Yazılım Koleji</option>
+                      <option value="Sağlık Meslek Lisesi">Sağlık Meslek Lisesi</option>
                     </select>
                   </div>
                   <div className="form-group">
-                    <textarea className="glass-textarea" placeholder="Eklemek istediğiniz mesajınız..." rows="3"></textarea>
+                    <textarea name="message" className="glass-textarea" placeholder="Eklemek istediğiniz mesajınız..." rows="3"></textarea>
                   </div>
                   
                   <div className="form-actions">
-                    <Link to="/hakkimizda#kampus" className="btn-primary-glow">
-                      <MapPin size={18} style={{ marginRight: '8px' }} /> Kampüsü Keşfet
-                    </Link>
-                    <button type="button" className="btn-glass-secondary w-full">
-                      <Calendar size={18} style={{ marginRight: '8px' }} /> Tanıtım Randevusu
+                    <button type="submit" className="btn-glow-red w-full">
+                      <Send size={18} style={{ marginRight: '8px' }} /> WhatsApp ile Gönder
                     </button>
+                    <Link to="/iletisim" className="btn-glass-secondary w-full">
+                      <Calendar size={18} style={{ marginRight: '8px' }} /> Detaylı Başvuru
+                    </Link>
                   </div>
                 </form>
               </div>

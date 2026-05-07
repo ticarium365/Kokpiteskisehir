@@ -10,12 +10,12 @@ const MainLayout = () => {
         <Outlet />
       </main>
       <Footer />
-      
-      {/* Floating WhatsApp Button */}
-      <a 
-        href="https://wa.me/90222600000" 
-        target="_blank" 
-        rel="noopener noreferrer" 
+
+      <a
+        href="https://wa.me/90222600000"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="floating-whatsapp"
         aria-label="WhatsApp ile iletişim"
       >
         <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="35" height="35" />

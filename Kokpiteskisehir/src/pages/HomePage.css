@@ -202,7 +202,7 @@
 
 @media (max-width: 1024px) {
   .hero-main-title {
-    font-size: 3.8rem;
+    font-size: 3.5rem;
   }
   .hero-sub-title {
     font-size: 1.2rem;
@@ -219,28 +219,20 @@
 
 @media (max-width: 768px) {
   .hero-main-title {
-    font-size: 2.8rem;
+    font-size: 2.4rem;
   }
   .hero-sub-title {
     font-size: 1rem;
   }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 480px) {
   .hero-main-title {
-    font-size: 4rem;
+    font-size: 1.9rem;
+    letter-spacing: -0.5px;
   }
   .hero-sub-title {
-    font-size: 1.3rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .hero-main-title {
-    font-size: 3rem;
-  }
-  .hero-sub-title {
-    font-size: 1.1rem;
+    font-size: 0.95rem;
   }
 }
 
@@ -512,25 +504,25 @@
 
 /* Specific Glows based on PM requirements */
 .card-aviation:hover {
-  box-shadow: 0 20px 50px rgba(255, 32, 78, 0.3), inset 0 0 20px rgba(255, 32, 78, 0.2);
-  border-color: rgba(255, 32, 78, 0.5);
+  box-shadow: 0 20px 50px rgba(192, 57, 43, 0.35), inset 0 0 20px rgba(192, 57, 43, 0.15);
+  border-color: rgba(192, 57, 43, 0.5);
 }
-.card-aviation:hover .school-icon-header { background: rgba(255, 32, 78, 0.8); border-color: transparent; }
-.card-aviation:hover .school-card-features li svg { color: var(--color-secondary); }
+.card-aviation:hover .school-icon-header { background: rgba(192, 57, 43, 0.85); border-color: transparent; }
+.card-aviation:hover .school-card-features li svg { color: #e74c3c; }
 
 .card-software:hover {
-  box-shadow: 0 20px 50px rgba(255, 32, 78, 0.3), inset 0 0 20px rgba(255, 32, 78, 0.2);
-  border-color: rgba(255, 32, 78, 0.5);
+  box-shadow: 0 20px 50px rgba(30, 123, 75, 0.35), inset 0 0 20px rgba(30, 123, 75, 0.15);
+  border-color: rgba(30, 123, 75, 0.5);
 }
-.card-software:hover .school-icon-header { background: rgba(255, 32, 78, 0.8); border-color: transparent; }
-.card-software:hover .school-card-features li svg { color: var(--color-secondary); }
+.card-software:hover .school-icon-header { background: rgba(30, 123, 75, 0.85); border-color: transparent; }
+.card-software:hover .school-card-features li svg { color: #00c896; }
 
 .card-health:hover {
-  box-shadow: 0 20px 50px rgba(255, 32, 78, 0.3), inset 0 0 20px rgba(255, 32, 78, 0.2);
-  border-color: rgba(255, 32, 78, 0.5);
+  box-shadow: 0 20px 50px rgba(26, 111, 168, 0.35), inset 0 0 20px rgba(26, 111, 168, 0.15);
+  border-color: rgba(26, 111, 168, 0.5);
 }
-.card-health:hover .school-icon-header { background: rgba(255, 32, 78, 0.8); border-color: transparent; }
-.card-health:hover .school-card-features li svg { color: var(--color-secondary); }
+.card-health:hover .school-icon-header { background: rgba(26, 111, 168, 0.85); border-color: transparent; }
+.card-health:hover .school-card-features li svg { color: #00b4d8; }
 
 @media (max-width: 768px) {
   .schools-premium-grid { grid-template-columns: 1fr; }

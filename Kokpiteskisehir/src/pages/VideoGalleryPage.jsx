@@ -112,6 +112,7 @@ const VideoGalleryPage = () => {
   };
 
   const openVideoModal = (video) => {
+    if (video.youtubeId === 'PLACEHOLDER_ID') return;
     setSelectedVideo(video);
     document.body.style.overflow = 'hidden';
   };
@@ -199,11 +200,20 @@ const VideoGalleryPage = () => {
                       onError={() => handleThumbnailError(video.id)}
                     />
                   )}
-                  <div className="play-button-overlay">
-                    <div className="play-button">
-                      <Play size={32} />
+                  {video.youtubeId !== 'PLACEHOLDER_ID' && (
+                    <div className="play-button-overlay">
+                      <div className="play-button">
+                        <Play size={32} />
+                      </div>
                     </div>
-                  </div>
+                  )}
+                  {video.youtubeId === 'PLACEHOLDER_ID' && (
+                    <div className="play-button-overlay">
+                      <div className="play-button coming-soon-play" style={{ fontSize: '0.75rem', width: 'auto', padding: '8px 16px', borderRadius: '20px', gap: '6px', display: 'flex', alignItems: 'center' }}>
+                        Yakında
+                      </div>
+                    </div>
+                  )}
                   <div className="video-overlay">
                     <span className="category-tag">{getCategoryLabel(video.category)}</span>
                   </div>
