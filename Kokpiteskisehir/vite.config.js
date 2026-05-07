@@ -6,6 +6,6 @@ export default defineConfig({
   server: {
     host: true,
     port: parseInt(process.env.PORT || '5173'),
-    allowedHosts: 'all',
+    allowedHosts: true,
   },
 })
