@@ -1,19 +1,21 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, ArrowRight, Bell, MessageCircle } from 'lucide-react';
+import { Calendar, ArrowRight, Bell, MessageCircle, Loader2 } from 'lucide-react';
 import SEO from '../components/SEO';
+import { useApi } from '../hooks/useApi';
 import './HaberlerPage.css';
 
+function formatTarih(tarihStr) {
+  if (!tarihStr) return '';
+  try {
+    return new Date(tarihStr).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' });
+  } catch {
+    return tarihStr;
+  }
+}
+
 const HaberlerPage = () => {
-  const newsItems = [
-    {
-      id: 1,
-      title: 'Kokpit Okulları Yeni Eğitim Yılı Başlıyor',
-      date: '2024',
-      excerpt: '2024-2025 eğitim yılında yeni programlarımız ve yeniliklerimiz.',
-      image: 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=800',
-      slug: 'yeni-egitim-yili'
-    }
-  ];
+  const { data: haberler, loading, error } = useApi('/haberler?yayinda=true');
 
   return (
     <div className="haberler-page-container">
@@ -40,39 +42,60 @@ const HaberlerPage = () => {
       {/* News Grid */}
       <section className="haberler-section">
         <div className="container">
-          <div className="haberler-grid">
-            {newsItems.map((item) => (
-              <Link key={item.id} to={`/haberler/${item.slug}`} className="haberler-card glass-card">
-                <div className="haberler-card-image">
-                  <img src={item.image} alt={item.title} />
-                </div>
-                <div className="haberler-card-content">
-                  <div className="haberler-card-date">
-                    <Calendar size={14} />
-                    {item.date}
-                  </div>
-                  <h3 className="haberler-card-title">{item.title}</h3>
-                  <p className="haberler-card-excerpt">{item.excerpt}</p>
-                  <span className="haberler-card-link">
-                    Devamını Oku <ArrowRight size={16} />
-                  </span>
-                </div>
-              </Link>
-            ))}
-          </div>
-
-          {/* Coming Soon Banner */}
-          <div className="content-coming-soon glass-card">
-            <div className="coming-soon-icon"><Bell size={36} /></div>
-            <div className="coming-soon-text">
-              <h3>Daha Fazla Haber Yolda</h3>
-              <p>Etkinlikler, başarılar ve okul haberleri buraya eklenecek. Gelişmelerden haberdar olmak için bizi takip edin.</p>
+          {loading && (
+            <div style={{ display: 'flex', justifyContent: 'center', padding: '60px 0' }}>
+              <Loader2 size={40} style={{ animation: 'spin 1s linear infinite', opacity: 0.5 }} />
             </div>
-            <a href="https://wa.me/905305801525" target="_blank" rel="noopener noreferrer" className="coming-soon-btn">
-              <MessageCircle size={16} />
-              WhatsApp ile Takip Et
-            </a>
-          </div>
+          )}
+
+          {error && (
+            <div className="content-coming-soon glass-card" style={{ textAlign: 'center' }}>
+              <p style={{ color: '#ef4444' }}>Haberler yüklenirken bir hata oluştu.</p>
+            </div>
+          )}
+
+          {!loading && !error && haberler && haberler.length > 0 && (
+            <div className="haberler-grid">
+              {haberler.map((item) => (
+                <Link key={item.id} to={`/haberler/${item.id}`} className="haberler-card glass-card">
+                  <div className="haberler-card-image">
+                    {item.resimUrl ? (
+                      <img src={item.resimUrl} alt={item.baslik} />
+                    ) : (
+                      <div style={{ background: 'linear-gradient(135deg, #1e293b 0%, #334155 100%)', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <Bell size={48} style={{ opacity: 0.3, color: '#fff' }} />
+                      </div>
+                    )}
+                  </div>
+                  <div className="haberler-card-content">
+                    <div className="haberler-card-date">
+                      <Calendar size={14} />
+                      {formatTarih(item.yayinTarihi)}
+                    </div>
+                    <h3 className="haberler-card-title">{item.baslik}</h3>
+                    {item.ozet && <p className="haberler-card-excerpt">{item.ozet}</p>}
+                    <span className="haberler-card-link">
+                      Devamını Oku <ArrowRight size={16} />
+                    </span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          )}
+
+          {!loading && !error && (!haberler || haberler.length === 0) && (
+            <div className="content-coming-soon glass-card">
+              <div className="coming-soon-icon"><Bell size={36} /></div>
+              <div className="coming-soon-text">
+                <h3>Haberler Yolda</h3>
+                <p>Etkinlikler, başarılar ve okul haberleri buraya eklenecek. Gelişmelerden haberdar olmak için bizi takip edin.</p>
+              </div>
+              <a href="https://wa.me/905305801525" target="_blank" rel="noopener noreferrer" className="coming-soon-btn">
+                <MessageCircle size={16} />
+                WhatsApp ile Takip Et
+              </a>
+            </div>
+          )}
         </div>
       </section>
     </div>

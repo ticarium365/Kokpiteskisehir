@@ -1,65 +1,11 @@
 import { Link } from 'react-router-dom';
-import { Users, GraduationCap, Award, BookOpen, Target, Heart, Shield, Star, ChevronRight } from 'lucide-react';
+import { Users, GraduationCap, Award, BookOpen, Target, Heart, Shield, Star, ChevronRight, Loader2 } from 'lucide-react';
 import SEO from '../components/SEO';
+import { useApi } from '../hooks/useApi';
 import './EgitimKadromuzPage.css';
 
 const EgitimKadromuzPage = () => {
-  const teachers = [
-    {
-      id: 1,
-      name: 'Dr. Ahmet Yılmaz',
-      title: 'Havacılık Bölüm Başkanı',
-      department: 'Havacılık Lisesi',
-      education: 'Anadolu Üniversitesi - Havacılık Doktora',
-      experience: '15 Yıl Deneyim',
-      image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=400&auto=format&fit=crop'
-    },
-    {
-      id: 2,
-      name: 'Doç. Dr. Zeynep Kara',
-      title: 'Sağlık Bölüm Başkanı',
-      department: 'Sağlık Meslek Lisesi',
-      education: 'Eskişehir Osmangazi Üniversitesi - Hemşirelik Doktora',
-      experience: '12 Yıl Deneyim',
-      image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=400&auto=format&fit=crop'
-    },
-    {
-      id: 3,
-      name: 'Müh. Emre Demir',
-      title: 'Yazılım Bölüm Başkanı',
-      department: 'Matrix Yazılım Koleji',
-      education: 'ODTÜ - Bilgisayar Mühendisliği Yüksek Lisans',
-      experience: '10 Yıl Deneyim',
-      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400&auto=format&fit=crop'
-    },
-    {
-      id: 4,
-      name: 'Elif Şahin',
-      title: 'İngilizce Öğretmeni',
-      department: 'Genel Eğitim',
-      education: 'Ankara Üniversitesi - İngiliz Öğretmenliği',
-      experience: '8 Yıl Deneyim',
-      image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=400&auto=format&fit=crop'
-    },
-    {
-      id: 5,
-      name: 'Can Özkan',
-      title: 'Game Development Eğitmeni',
-      department: 'Matrix Yazılım Koleji',
-      education: 'İstanbul Teknik Üniversitesi - Yazılım Mühendisliği',
-      experience: '6 Yıl Deneyim',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop'
-    },
-    {
-      id: 6,
-      name: 'Ayşe Kaya',
-      title: 'Hemşirelik Eğitmeni',
-      department: 'Sağlık Meslek Lisesi',
-      education: 'Ankara Üniversitesi - Hemşirelik',
-      experience: '7 Yıl Deneyim',
-      image: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?q=80&w=400&auto=format&fit=crop'
-    }
-  ];
+  const { data: teachers, loading, error } = useApi('/ekip?yayinda=true');
 
   return (
     <div className="ek-page-container">
@@ -122,31 +68,50 @@ const EgitimKadromuzPage = () => {
             </p>
           </div>
 
-          <div className="ek-teachers-grid">
-            {teachers.map((teacher) => (
-              <div key={teacher.id} className="ek-teacher-card glass-card">
-                <div className="ek-teacher-image">
-                  <img src={teacher.image} alt={teacher.name} />
-                  <div className="ek-teacher-overlay"></div>
-                </div>
-                <div className="ek-teacher-content">
-                  <div className="ek-teacher-department">{teacher.department}</div>
-                  <h3 className="ek-teacher-name">{teacher.name}</h3>
-                  <p className="ek-teacher-title">{teacher.title}</p>
-                  <div className="ek-teacher-details">
-                    <div className="ek-teacher-detail">
-                      <GraduationCap size={14} />
-                      <span>{teacher.education}</span>
-                    </div>
-                    <div className="ek-teacher-detail">
-                      <Target size={14} />
-                      <span>{teacher.experience}</span>
-                    </div>
+          {loading && (
+            <div style={{ display: 'flex', justifyContent: 'center', padding: '60px 0' }}>
+              <Loader2 size={40} style={{ animation: 'spin 1s linear infinite', opacity: 0.5 }} />
+            </div>
+          )}
+
+          {!loading && !error && teachers && teachers.length > 0 && (
+            <div className="ek-teachers-grid">
+              {teachers.map((teacher) => (
+                <div key={teacher.id} className="ek-teacher-card glass-card">
+                  <div className="ek-teacher-image">
+                    {teacher.resimUrl ? (
+                      <img src={teacher.resimUrl} alt={teacher.ad} />
+                    ) : (
+                      <div style={{ width: '100%', height: '100%', background: 'linear-gradient(135deg, #1e293b, #334155)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <Users size={64} style={{ opacity: 0.3, color: '#fff' }} />
+                      </div>
+                    )}
+                    <div className="ek-teacher-overlay"></div>
+                  </div>
+                  <div className="ek-teacher-content">
+                    {teacher.bolum && <div className="ek-teacher-department">{teacher.bolum}</div>}
+                    <h3 className="ek-teacher-name">{teacher.ad}</h3>
+                    <p className="ek-teacher-title">{teacher.unvan}</p>
+                    {teacher.biyografi && (
+                      <div className="ek-teacher-details">
+                        <div className="ek-teacher-detail">
+                          <Target size={14} />
+                          <span>{teacher.biyografi}</span>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
+
+          {!loading && !error && (!teachers || teachers.length === 0) && (
+            <div className="glass-card" style={{ textAlign: 'center', padding: '60px 40px' }}>
+              <Users size={48} style={{ opacity: 0.3, marginBottom: '16px' }} />
+              <p style={{ opacity: 0.6 }}>Ekip bilgileri yakında eklenecek.</p>
+            </div>
+          )}
 
           <div className="ek-cta-container">
             <Link to="/iletisim" className="btn-primary-glow">
