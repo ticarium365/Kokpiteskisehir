@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Kokpit Okulları"
+version = "1.0.0"
+id = "artifacts/kokpit-website"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 19633
+
+[services.development]
+run = "cd /home/runner/workspace/Kokpiteskisehir && npm run dev"
+
+[services.production]
+build = [ "bash", "-c", "cd /home/runner/workspace/Kokpiteskisehir && npm run build" ]
+publicDir = "Kokpiteskisehir/dist"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "19633"
+BASE_PATH = "/"
