@@ -1,0 +1,362 @@
+/* --- HEDEFLERİMİZ PAGE STYLES --- */
+
+.hedefler-page-container {
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  color: #fff;
+}
+
+/* Hero Section */
+.hedefler-hero-section {
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 80px;
+  overflow: hidden;
+}
+
+.hedefler-hero-bg {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image: url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2000&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: brightness(0.4) contrast(1.1);
+  transform: scale(1.05);
+  animation: slowZoom 20s infinite alternate ease-in-out;
+  z-index: 0;
+}
+
+.hedefler-hero-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(to bottom, rgba(7, 16, 26, 0.4) 0%, rgba(7, 16, 26, 1) 100%);
+  z-index: 1;
+}
+
+.hedefler-hero-content {
+  max-width: 800px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.hedefler-badge {
+  display: inline-block;
+  background: rgba(255, 32, 78, 0.15);
+  color: var(--color-secondary);
+  padding: 8px 20px;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 32, 78, 0.3);
+}
+
+.hedefler-hero-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.hedefler-hero-subtitle {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+/* Section Styles */
+.hedefler-section {
+  padding: 80px 0;
+}
+
+.hedefler-section.bg-darker {
+  background: rgba(4, 9, 17, 0.5);
+}
+
+.section-header-centered {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-main-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #fff;
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Mission & Vision Grid */
+.hedefler-mv-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+}
+
+.hedefler-mv-card {
+  padding: 50px;
+  text-align: center;
+}
+
+.hedefler-mv-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  background: rgba(255, 32, 78, 0.15);
+  border-radius: 50%;
+  color: var(--color-secondary);
+  margin-bottom: 30px;
+}
+
+.hedefler-mv-card h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.hedefler-mv-card p {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.8;
+  font-size: 1rem;
+}
+
+/* Goals Grid */
+.hedefler-goals-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+.hedefler-goal-card {
+  padding: 35px;
+}
+
+.hedefler-goal-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 32, 78, 0.15);
+  border-radius: 50%;
+  color: var(--color-secondary);
+  margin-bottom: 20px;
+}
+
+.hedefler-goal-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #fff;
+}
+
+.hedefler-goal-description {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+.hedefler-progress-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.hedefler-progress-bar {
+  flex: 1;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.hedefler-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-secondary) 0%, #00c896 100%);
+  border-radius: 4px;
+  transition: width 1s ease;
+}
+
+.hedefler-progress-text {
+  font-weight: 700;
+  color: #00c896;
+  min-width: 45px;
+}
+
+/* Timeline */
+.hedefler-timeline {
+  display: flex;
+  gap: 30px;
+  margin-top: 50px;
+  overflow-x: auto;
+  padding-bottom: 20px;
+}
+
+.hedefler-milestone {
+  flex: 1;
+  min-width: 250px;
+}
+
+.hedefler-milestone-year {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+  margin-bottom: 15px;
+}
+
+.hedefler-milestone-content {
+  padding: 25px;
+}
+
+.hedefler-milestone-content h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.hedefler-milestone-content p {
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Values Grid */
+.hedefler-values-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.hedefler-value-card {
+  padding: 35px 30px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.hedefler-value-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.hedefler-value-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 32, 78, 0.15);
+  border-radius: 50%;
+  color: var(--color-secondary);
+  margin-bottom: 20px;
+}
+
+.hedefler-value-card h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #fff;
+}
+
+.hedefler-value-card p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Final CTA */
+.hedefler-final-cta {
+  position: relative;
+  padding: 80px 0;
+  background-image: url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2000&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.hedefler-cta-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(7, 16, 26, 0.85);
+}
+
+.hedefler-cta-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.hedefler-final-cta h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #fff;
+}
+
+.hedefler-final-cta p {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 30px;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 1024px) {
+  .hedefler-mv-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hedefler-goals-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hedefler-values-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hedefler-timeline {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .hedefler-hero-title {
+    font-size: 2rem;
+  }
+
+  .hedefler-hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .hedefler-values-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hedefler-cta-actions {
+    flex-direction: column;
+  }
+
+  .section-main-title {
+    font-size: 2rem;
+  }
+}
+
+@keyframes slowZoom {
+  from {
+    transform: scale(1.05);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}

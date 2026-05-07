@@ -1,0 +1,561 @@
+/* --- PREMIUM INSTITUTIONAL ABOUT PAGE STYLES --- */
+
+.about-page-container {
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  color: #fff;
+}
+
+/* Campus Tour Section */
+.campus-tour-section {
+  padding: 80px 0;
+  background: rgba(4, 9, 17, 0.5);
+}
+
+.campus-tour-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 40px;
+  margin-top: 50px;
+}
+
+.campus-spots-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.campus-spot-btn {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+.campus-spot-btn:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.campus-spot-btn.active {
+  background: rgba(255, 32, 78, 0.15);
+  border-color: var(--color-secondary);
+  color: #fff;
+}
+
+.spot-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.campus-spot-btn.active .spot-icon {
+  background: var(--color-secondary);
+}
+
+.spot-title {
+  flex: 1;
+}
+
+.spot-arrow {
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.campus-spot-btn.active .spot-arrow {
+  opacity: 1;
+}
+
+.campus-spot-display {
+  position: relative;
+}
+
+.spot-image-wrapper {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  aspect-ratio: 16/10;
+}
+
+.spot-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.spot-image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(7, 16, 26, 0.8) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.spot-info-panel {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 30px;
+  background: rgba(7, 16, 26, 0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 0 0 20px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.spot-info-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  background: var(--color-secondary);
+  border-radius: 12px;
+  margin-bottom: 15px;
+  color: #fff;
+}
+
+.spot-info-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.spot-info-description {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+/* 1. Cinematic Hero Section */
+.about-hero-section {
+  position: relative;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 80px;
+  overflow: hidden;
+}
+
+.about-hero-bg {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2000&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: brightness(0.4) contrast(1.1);
+  transform: scale(1.05);
+  animation: slowZoom 20s infinite alternate ease-in-out;
+  z-index: 0;
+}
+
+
+.about-hero-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(to bottom, rgba(7, 16, 26, 0.4) 0%, rgba(7, 16, 26, 1) 100%);
+  z-index: 1;
+}
+
+.about-hero-content {
+  max-width: 800px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.about-badge {
+  display: inline-block;
+  background: rgba(255, 32, 78, 0.15);
+  color: var(--color-secondary);
+  padding: 8px 16px;
+  border-radius: 30px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: 1px solid rgba(255, 32, 78, 0.3);
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.about-hero-title {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 25px;
+  background: linear-gradient(180deg, #FFFFFF 0%, #b0b8c8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -1.5px;
+}
+
+.about-hero-subtitle {
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+
+.about-hero-actions {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+/* 2. Content Sections */
+.about-section {
+  padding: 100px 0;
+  position: relative;
+  z-index: 10;
+}
+
+.bg-darker {
+  background-color: rgba(4, 9, 17, 0.6);
+}
+
+.section-header-centered {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 60px;
+}
+
+.section-main-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  background: linear-gradient(180deg, #FFFFFF 0%, #b0b8c8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+}
+
+/* 3. Glass Cards */
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 40px 30px;
+  transition: all 0.4s ease;
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 32, 78, 0.3);
+  transform: translateY(-5px);
+}
+
+.glass-panel {
+  background: rgba(11, 25, 44, 0.5);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 40px;
+}
+
+/* 4. Philosophy Grid */
+.philosophy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.philosophy-icon {
+  width: 60px; height: 60px;
+  background: rgba(255, 32, 78, 0.1);
+  border: 1px solid rgba(255, 32, 78, 0.2);
+  color: var(--color-secondary);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.philosophy-card-title {
+  font-size: 1.5rem;
+  color: #fff;
+  margin-bottom: 15px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.philosophy-card p {
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* 5. Vision & Mission Split */
+.vision-mission-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+}
+
+.vm-icon {
+  color: var(--color-secondary);
+  margin-bottom: 25px;
+}
+
+.vision-panel h2, .mission-panel h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: #fff;
+}
+
+.vision-panel p, .mission-panel p {
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.8;
+  margin-bottom: 20px;
+  font-size: 1rem;
+}
+
+/* 6. Trust Features Grid */
+.trust-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.trust-icon {
+  color: var(--color-secondary);
+  margin-bottom: 20px;
+}
+
+.trust-feature h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.trust-feature p {
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* 7. Culture Grid */
+.culture-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.culture-number {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--color-secondary);
+  opacity: 0.3;
+  margin-bottom: 15px;
+  line-height: 1;
+}
+
+.culture-item h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.culture-item p {
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* 8. Buttons */
+.btn-primary-glow {
+  display: inline-flex;
+  align-items: center;
+  padding: 16px 32px;
+  background: linear-gradient(135deg, var(--color-secondary) 0%, #c41a3e 100%);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 30px rgba(255, 32, 78, 0.2);
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary-glow:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 40px rgba(255, 32, 78, 0.2);
+}
+
+.btn-glass {
+  display: inline-flex;
+  align-items: center;
+  padding: 16px 32px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-glass:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+/* 9. Final CTA */
+.about-final-cta {
+  padding: 120px 0;
+  position: relative;
+  background: url('https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=2000') center/cover fixed;
+}
+
+.about-final-cta .cta-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(135deg, rgba(7, 16, 26, 0.95) 0%, rgba(11, 25, 44, 0.8) 100%);
+}
+
+.about-final-cta h2 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+  background: linear-gradient(180deg, #FFFFFF 0%, #b0b8c8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.about-final-cta p {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 40px;
+}
+
+.relative-z {
+  position: relative;
+  z-index: 2;
+}
+
+/* 10. Mobile Responsiveness */
+@media (max-width: 1024px) {
+  .vision-mission-split {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .campus-tour-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .campus-spot-btn {
+    padding: 15px;
+  }
+
+  .spot-icon {
+    width: 45px;
+    height: 45px;
+  }
+
+  .spot-info-title {
+    font-size: 1.2rem;
+  }
+
+  .spot-info-panel {
+    padding: 20px;
+  }
+
+  .about-hero-title {
+    font-size: 2rem;
+  }
+
+  .about-hero-section {
+    min-height: 75vh;
+  }
+  
+  .about-hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .about-hero-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .about-hero-actions {
+    flex-direction: column;
+  }
+  
+  .about-section {
+    padding: 60px 0;
+  }
+  
+  .philosophy-grid,
+  .trust-features-grid,
+  .culture-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .section-main-title {
+    font-size: 2rem;
+  }
+  
+  .about-final-cta h2 {
+    font-size: 2rem;
+  }
+
+  .glass-card, .glass-panel {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  @media (hover: none) {
+    .glass-card:hover {
+      transform: none;
+    }
+    .glass-card:active {
+      transform: scale(0.98);
+    }
+  }
+}

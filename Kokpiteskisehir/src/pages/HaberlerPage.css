@@ -1,0 +1,149 @@
+/* --- HABERLER PAGE STYLES --- */
+
+.haberler-page-container {
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  color: #fff;
+}
+
+/* Hero Section */
+.haberler-hero-section {
+  position: relative;
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 80px;
+  overflow: hidden;
+}
+
+.haberler-hero-bg {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image: url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=2000&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: brightness(0.4) contrast(1.1);
+  transform: scale(1.05);
+  animation: slowZoom 20s infinite alternate ease-in-out;
+  z-index: 0;
+}
+
+.haberler-hero-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(to bottom, rgba(7, 16, 26, 0.4) 0%, rgba(7, 16, 26, 1) 100%);
+  z-index: 1;
+}
+
+.haberler-hero-content {
+  max-width: 800px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.haberler-hero-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.haberler-hero-subtitle {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+/* Section */
+.haberler-section {
+  padding: 80px 0;
+}
+
+.haberler-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.haberler-card {
+  overflow: hidden;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+}
+
+.haberler-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.haberler-card-image {
+  height: 200px;
+  overflow: hidden;
+}
+
+.haberler-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.haberler-card-content {
+  padding: 25px;
+}
+
+.haberler-card-date {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+}
+
+.haberler-card-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #fff;
+}
+
+.haberler-card-excerpt {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.haberler-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-secondary);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* Mobile */
+@media (max-width: 1024px) {
+  .haberler-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .haberler-hero-title {
+    font-size: 2rem;
+  }
+
+  .haberler-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@keyframes slowZoom {
+  from { transform: scale(1.05); }
+  to { transform: scale(1.1); }
+}

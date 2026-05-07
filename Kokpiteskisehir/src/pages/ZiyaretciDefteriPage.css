@@ -1,0 +1,367 @@
+/* --- ZİYARETÇİ DEFTERİ PAGE STYLES --- */
+
+.ziyaretci-page-container {
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  color: #fff;
+}
+
+/* Hero Section */
+.ziyaretci-hero-section {
+  position: relative;
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 80px;
+  overflow: hidden;
+}
+
+.ziyaretci-hero-bg {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image: url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2000&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: brightness(0.4) contrast(1.1);
+  transform: scale(1.05);
+  animation: slowZoom 20s infinite alternate ease-in-out;
+  z-index: 0;
+}
+
+.ziyaretci-hero-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(to bottom, rgba(7, 16, 26, 0.4) 0%, rgba(7, 16, 26, 1) 100%);
+  z-index: 1;
+}
+
+.ziyaretci-hero-content {
+  max-width: 800px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.ziyaretci-badge {
+  display: inline-block;
+  background: rgba(255, 32, 78, 0.15);
+  color: var(--color-secondary);
+  padding: 8px 20px;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 32, 78, 0.3);
+}
+
+.ziyaretci-hero-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.ziyaretci-hero-subtitle {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+/* Section Styles */
+.ziyaretci-section {
+  padding: 80px 0;
+}
+
+.ziyaretci-section.bg-darker {
+  background: rgba(4, 9, 17, 0.5);
+}
+
+.section-header-centered {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-main-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #fff;
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Testimonials Grid */
+.ziyaretci-testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.ziyaretci-testimonial-card {
+  padding: 30px;
+  transition: all 0.3s ease;
+}
+
+.ziyaretci-testimonial-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.ziyaretci-testimonial-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.ziyaretci-testimonial-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-secondary) 0%, #c41a3e 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.ziyaretci-testimonial-info {
+  flex: 1;
+}
+
+.ziyaretci-testimonial-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: #fff;
+}
+
+.ziyaretci-testimonial-date {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.ziyaretci-testimonial-rating {
+  display: flex;
+  gap: 2px;
+  color: #ff9f40;
+}
+
+.ziyaretci-testimonial-message {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  font-style: italic;
+}
+
+/* Form Container */
+.ziyaretci-form-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 50px;
+}
+
+.ziyaretci-form-header {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.ziyaretci-form-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 70px;
+  background: rgba(255, 32, 78, 0.15);
+  border-radius: 50%;
+  color: var(--color-secondary);
+  flex-shrink: 0;
+}
+
+.ziyaretci-form-header h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: #fff;
+}
+
+.ziyaretci-form-header p {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.ziyaretci-form-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.ziyaretci-form-group {
+  margin-bottom: 25px;
+}
+
+.ziyaretci-form-group label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.glass-input,
+.glass-textarea {
+  width: 100%;
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: #fff;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.glass-input:focus,
+.glass-textarea:focus {
+  outline: none;
+  border-color: var(--color-secondary);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.glass-input::placeholder,
+.glass-textarea::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.ziyaretci-submit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, var(--color-secondary) 0%, #c41a3e 100%);
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ziyaretci-submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 30px rgba(255, 32, 78, 0.3);
+}
+
+.ziyaretci-success-message {
+  text-align: center;
+  padding: 40px;
+}
+
+.ziyaretci-success-message svg {
+  color: #00c896;
+  margin-bottom: 20px;
+}
+
+.ziyaretci-success-message h3 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #fff;
+}
+
+.ziyaretci-success-message p {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Info Card */
+.ziyaretci-info-card {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px;
+}
+
+.ziyaretci-info-card h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 25px;
+  color: #fff;
+}
+
+.ziyaretci-rules-list {
+  list-style: none;
+  padding: 0;
+}
+
+.ziyaretci-rules-list li {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 10px;
+  margin-bottom: 15px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.ziyaretci-rules-list li svg {
+  color: #00c896;
+  flex-shrink: 0;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 1024px) {
+  .ziyaretci-testimonials-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .ziyaretci-hero-title {
+    font-size: 2rem;
+  }
+
+  .ziyaretci-hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .ziyaretci-testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ziyaretci-form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .ziyaretci-form-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .section-main-title {
+    font-size: 2rem;
+  }
+}
+
+@keyframes slowZoom {
+  from {
+    transform: scale(1.05);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}

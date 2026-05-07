@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+@import './styles/shared.css';
+
+:root {
+  --color-primary: #0a0e1a; /* Very Dark Navy - consistent background */
+  --color-primary-light: #1E3E62;
+  --color-secondary: #FF204E; /* Vibrant Glowing Red - primary accent only */
+  --color-secondary-hover: #FF204E;
+  --color-bg: #0a0e1a; /* Very Dark Navy - consistent background */
+  --color-text: #FFFFFF; /* White for headings */
+  --color-text-body: #b0b8c8; /* Body text */
+  --color-text-muted: #8892a4; /* Secondary/muted text */
+  --color-text-light: #8892a4;
+  --color-white: #FFFFFF;
+  
+  /* School-specific accent colors */
+  --color-aviation: #C0392B;   /* red — same as site accent */
+  --color-health: #1A6FA8;     /* blue */
+  --color-software: #1E7B4B;   /* green */
+  
+  --glass-bg: rgba(30, 62, 98, 0.25);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  --glass-blur: blur(20px);
+  
+  --font-primary: 'Plus Jakarta Sans', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-primary);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  color: var(--color-white);
+  letter-spacing: -0.03em;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+
+
+
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-primary-light);
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-secondary);
+}
+
+.floating-whatsapp {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  background-color: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.floating-whatsapp:hover {
+  transform: translateY(-5px) scale(1.1);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+}

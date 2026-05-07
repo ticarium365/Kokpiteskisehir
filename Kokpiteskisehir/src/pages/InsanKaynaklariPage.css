@@ -1,0 +1,418 @@
+/* --- INSAN KAYNAKLARI PAGE STYLES --- */
+
+.ik-page-container {
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  color: #fff;
+}
+
+/* Hero Section */
+.ik-hero-section {
+  position: relative;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 80px;
+  overflow: hidden;
+}
+
+.ik-hero-bg {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image: url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2000&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: brightness(0.4) contrast(1.1);
+  transform: scale(1.05);
+  animation: slowZoom 20s infinite alternate ease-in-out;
+  z-index: 0;
+}
+
+.ik-hero-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(to bottom, rgba(7, 16, 26, 0.4) 0%, rgba(7, 16, 26, 1) 100%);
+  z-index: 1;
+}
+
+.ik-hero-content {
+  max-width: 800px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.ik-badge {
+  display: inline-block;
+  background: rgba(255, 32, 78, 0.15);
+  color: var(--color-secondary);
+  padding: 8px 20px;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 32, 78, 0.3);
+}
+
+.ik-hero-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.ik-hero-subtitle {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+.ik-hero-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+/* Section Styles */
+.ik-section {
+  padding: 100px 0;
+}
+
+.ik-section.bg-darker {
+  background: rgba(4, 9, 17, 0.5);
+}
+
+.section-header-centered {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-main-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #fff;
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Benefits Grid */
+.ik-benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.ik-benefit-card {
+  padding: 40px 30px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.ik-benefit-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.ik-benefit-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 70px;
+  background: rgba(255, 32, 78, 0.15);
+  border-radius: 50%;
+  color: var(--color-secondary);
+  margin-bottom: 25px;
+}
+
+.ik-benefit-card h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #fff;
+}
+
+.ik-benefit-card p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Positions Grid */
+.ik-positions-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+.ik-position-card {
+  padding: 35px;
+  transition: all 0.3s ease;
+}
+
+.ik-position-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.ik-position-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.ik-position-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.ik-position-type-full,
+.ik-position-type-part {
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.ik-position-type-full {
+  background: rgba(0, 200, 150, 0.15);
+  color: #00c896;
+  border: 1px solid rgba(0, 200, 150, 0.3);
+}
+
+.ik-position-type-part {
+  background: rgba(255, 159, 64, 0.15);
+  color: #ff9f40;
+  border: 1px solid rgba(255, 159, 64, 0.3);
+}
+
+.ik-position-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #fff;
+}
+
+.ik-position-department {
+  color: var(--color-secondary);
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.ik-position-details {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.ik-position-location::before {
+  content: '📍 ';
+}
+
+.ik-position-experience::before {
+  content: '💼 ';
+}
+
+.ik-position-requirements {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+}
+
+.ik-position-requirements p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.ik-apply-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  background: linear-gradient(135deg, var(--color-secondary) 0%, #c41a3e 100%);
+  color: #fff;
+  font-weight: 600;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.ik-apply-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(255, 32, 78, 0.3);
+}
+
+.ik-notice {
+  display: flex;
+  gap: 20px;
+  padding: 30px;
+  margin-top: 40px;
+}
+
+.ik-notice-icon {
+  display: flex;
+  align-items: flex-start;
+  color: #00c896;
+  flex-shrink: 0;
+}
+
+.ik-notice-content h4 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.ik-notice-content p {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Process Steps */
+.ik-process-steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 50px;
+  flex-wrap: wrap;
+}
+
+.ik-process-step {
+  text-align: center;
+  flex: 1;
+  min-width: 150px;
+}
+
+.ik-step-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--color-secondary) 0%, #c41a3e 100%);
+  border-radius: 50%;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 auto 20px;
+}
+
+.ik-process-step h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #fff;
+}
+
+.ik-process-step p {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.ik-process-arrow {
+  font-size: 2rem;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* Final CTA */
+.ik-final-cta {
+  position: relative;
+  padding: 100px 0;
+  background-image: url('https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2000&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.ik-cta-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(7, 16, 26, 0.85);
+}
+
+.ik-final-cta h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #fff;
+}
+
+.ik-final-cta p {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 30px;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 1024px) {
+  .ik-benefits-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ik-positions-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .ik-hero-title {
+    font-size: 2rem;
+  }
+
+  .ik-hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .ik-hero-actions {
+    flex-direction: column;
+  }
+
+  .ik-benefits-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ik-process-steps {
+    flex-direction: column;
+  }
+
+  .ik-process-arrow {
+    transform: rotate(90deg);
+  }
+
+  .ik-notice {
+    flex-direction: column;
+  }
+
+  .section-main-title {
+    font-size: 2rem;
+  }
+}
+
+@keyframes slowZoom {
+  from {
+    transform: scale(1.05);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}

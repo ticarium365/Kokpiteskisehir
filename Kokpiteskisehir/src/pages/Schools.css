@@ -1,0 +1,644 @@
+/* --- PREMIUM SCHOOL LANDING PAGE SHARED STYLES --- */
+
+.school-page-container {
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  color: #fff;
+}
+
+/* Aviation-Specific Hero Styles */
+.aviation-hero .school-hero-bg {
+  background-image: url('https://images.unsplash.com/photo-1559827260-dc66d52bef19?q=80&w=2000&auto=format&fit=crop');
+}
+
+.aviation-overlay {
+  background: linear-gradient(135deg, 
+    rgba(7, 16, 26, 0.5) 0%, 
+    rgba(11, 25, 44, 0.7) 50%,
+    rgba(7, 16, 26, 0.95) 100%);
+}
+
+.aviation-badge {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(192, 57, 43, 0.15);
+  color: var(--color-aviation);
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: 1px solid rgba(192, 57, 43, 0.3);
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  box-shadow: 0 0 30px rgba(192, 57, 43, 0.2);
+}
+
+/* Aviation Card Enhancements */
+.aviation-card {
+  border-color: rgba(192, 57, 43, 0.15);
+}
+
+.aviation-card:hover {
+  border-color: rgba(192, 57, 43, 0.4);
+  box-shadow: 0 10px 40px rgba(192, 57, 43, 0.1);
+}
+
+.aviation-icon {
+  background: linear-gradient(135deg, rgba(192, 57, 43, 0.15) 0%, rgba(192, 57, 43, 0.05) 100%);
+  border: 1px solid rgba(192, 57, 43, 0.25);
+  color: var(--color-aviation);
+}
+
+/* Matrix/Technology-Specific Styles */
+.matrix-bg {
+  background-image: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2000&auto=format&fit=crop');
+}
+
+.matrix-overlay {
+  background: linear-gradient(135deg, 
+    rgba(7, 16, 26, 0.5) 0%, 
+    rgba(11, 25, 44, 0.7) 50%,
+    rgba(7, 16, 26, 0.95) 100%);
+}
+
+.matrix-badge {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(30, 123, 75, 0.15);
+  color: var(--color-software);
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: 1px solid rgba(30, 123, 75, 0.3);
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  box-shadow: 0 0 30px rgba(30, 123, 75, 0.2);
+}
+
+.matrix-card {
+  border-color: rgba(30, 123, 75, 0.15);
+}
+
+.matrix-card:hover {
+  border-color: rgba(30, 123, 75, 0.4);
+  box-shadow: 0 10px 40px rgba(30, 123, 75, 0.1);
+}
+
+.matrix-icon {
+  background: linear-gradient(135deg, rgba(30, 123, 75, 0.15) 0%, rgba(30, 123, 75, 0.05) 100%);
+  border: 1px solid rgba(30, 123, 75, 0.25);
+  color: var(--color-software);
+}
+
+.matrix-image {
+  background-image: url('https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=800');
+}
+
+.matrix-tag::before {
+  background: linear-gradient(180deg, var(--color-software) 0%, rgba(30, 123, 75, 0.3) 100%);
+}
+
+.matrix-tag svg {
+  color: var(--color-software);
+}
+
+.matrix-tag:hover {
+  border-color: rgba(30, 123, 75, 0.3);
+}
+
+.matrix-cta {
+  background: url('https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2000') center/cover fixed;
+}
+
+/* Health-Specific Styles */
+.health-bg {
+  background-image: url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=2000&auto=format&fit=crop');
+}
+
+.health-overlay {
+  background: linear-gradient(135deg, 
+    rgba(7, 16, 26, 0.5) 0%, 
+    rgba(11, 25, 44, 0.7) 50%,
+    rgba(7, 16, 26, 0.95) 100%);
+}
+
+.health-badge {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(26, 111, 168, 0.15);
+  color: var(--color-health);
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: 1px solid rgba(26, 111, 168, 0.3);
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  box-shadow: 0 0 30px rgba(26, 111, 168, 0.2);
+}
+
+.health-card {
+  border-color: rgba(26, 111, 168, 0.15);
+}
+
+.health-card:hover {
+  border-color: rgba(26, 111, 168, 0.4);
+  box-shadow: 0 10px 40px rgba(26, 111, 168, 0.1);
+}
+
+.health-icon {
+  background: linear-gradient(135deg, rgba(26, 111, 168, 0.15) 0%, rgba(26, 111, 168, 0.05) 100%);
+  border: 1px solid rgba(26, 111, 168, 0.25);
+  color: var(--color-health);
+}
+
+.health-image {
+  background-image: url('https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=800');
+}
+
+.health-tag::before {
+  background: linear-gradient(180deg, var(--color-health) 0%, rgba(26, 111, 168, 0.3) 100%);
+}
+
+.health-tag svg {
+  color: var(--color-health);
+}
+
+.health-tag:hover {
+  border-color: rgba(26, 111, 168, 0.3);
+}
+
+.health-cta {
+  background: url('https://images.unsplash.com/photo-1538108149393-fbbd81895907?q=80&w=2000') center/cover fixed;
+}
+
+/* 1. Cinematic Hero Section */
+.school-hero-section {
+  position: relative;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 80px;
+  overflow: hidden;
+}
+
+.school-hero-bg {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: brightness(0.4) contrast(1.1);
+  transform: scale(1.05);
+  animation: slowZoom 20s infinite alternate ease-in-out;
+  z-index: 0;
+}
+
+
+.school-hero-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(to bottom, rgba(7, 16, 26, 0.4) 0%, rgba(7, 16, 26, 1) 100%);
+  z-index: 1;
+}
+
+.school-hero-content {
+  max-width: 800px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.school-badge {
+  display: inline-block;
+  background: rgba(255, 32, 78, 0.15);
+  color: var(--color-secondary);
+  padding: 8px 16px;
+  border-radius: 30px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: 1px solid rgba(255, 32, 78, 0.3);
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.school-hero-title {
+  font-size: 4rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 25px;
+  background: linear-gradient(180deg, #FFFFFF 0%, #a0aec0 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -1.5px;
+}
+
+.school-hero-subtitle {
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+
+.school-hero-actions {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* 2. Content Sections */
+.school-content-section {
+  padding: 100px 0;
+  position: relative;
+  z-index: 10;
+}
+
+.bg-darker {
+  background-color: rgba(4, 9, 17, 0.6);
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 40px 30px;
+  transition: all 0.4s ease;
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 32, 78, 0.3);
+  transform: translateY(-5px);
+}
+
+.glass-icon {
+  width: 50px; height: 50px;
+  background: rgba(255, 32, 78, 0.1);
+  border: 1px solid rgba(255, 32, 78, 0.2);
+  color: var(--color-secondary);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.glass-card h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.glass-card p {
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* 3. Split Layout */
+.split-content-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.section-lead {
+  font-size: 1.15rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  margin-bottom: 40px;
+}
+
+.program-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.accordion-item {
+  transition: all 0.3s ease;
+}
+
+.accordion-item:hover {
+  border-color: rgba(255, 32, 78, 0.2);
+  background: rgba(11, 25, 44, 0.6);
+}
+
+.glass-panel {
+  background: rgba(11, 25, 44, 0.5);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 30px;
+}
+
+.accordion-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #fff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 15px;
+}
+
+.clean-list {
+  list-style: none;
+  padding: 0;
+}
+
+.clean-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 12px;
+  font-size: 1rem;
+}
+
+.clean-list li svg {
+  color: var(--color-secondary);
+  flex-shrink: 0;
+}
+
+.glass-image-wrapper {
+  position: relative;
+  border-radius: 30px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  aspect-ratio: 4/5;
+}
+
+.glass-image-bg {
+  width: 100%; height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.glass-floating-badge {
+  position: absolute;
+  bottom: 30px; left: 30px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  padding: 12px 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-weight: 600;
+  color: #fff;
+}
+
+/* 4. Careers Grid */
+.career-tags-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.career-tag {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.career-tag::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--color-secondary) 0%, rgba(255, 32, 78, 0.3) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.career-tag svg {
+  color: var(--color-secondary);
+  flex-shrink: 0;
+}
+
+.career-tag:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 32, 78, 0.3);
+  transform: translateX(5px);
+}
+
+.career-tag:hover::before {
+  opacity: 1;
+}
+
+/* 5. Student Profile */
+.profile-box {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 60px 40px;
+}
+
+.profile-header h2 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.profile-header p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.1rem;
+  margin-bottom: 40px;
+}
+
+.profile-icon {
+  color: var(--color-secondary);
+  margin-bottom: 20px;
+}
+
+.profile-traits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+}
+
+.trait {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 20px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+  min-width: 120px;
+}
+
+.trait:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 32, 78, 0.2);
+  transform: translateY(-3px);
+}
+
+.trait svg {
+  color: var(--color-secondary);
+  opacity: 1;
+}
+
+.trait span {
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.95rem;
+}
+
+/* 6. Final CTA */
+.school-final-cta {
+  padding: 120px 0;
+  position: relative;
+  background: url('https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=2000') center/cover fixed;
+}
+
+.school-final-cta .cta-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(135deg, rgba(7, 16, 26, 0.95) 0%, rgba(11, 25, 44, 0.8) 100%);
+}
+
+.school-final-cta h2 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.school-final-cta p {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 40px;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+/* Matrix Glow Button */
+.btn-glow-matrix {
+  display: inline-flex;
+  align-items: center;
+  padding: 16px 32px;
+  background: linear-gradient(135deg, var(--color-software) 0%, rgba(30, 123, 75, 0.8) 100%);
+  color: #07101A;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 30px rgba(30, 123, 75, 0.3);
+  border: none;
+  cursor: pointer;
+}
+
+.btn-glow-matrix:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 40px rgba(30, 123, 75, 0.5);
+}
+
+/* Health Glow Button */
+.btn-glow-health {
+  display: inline-flex;
+  align-items: center;
+  padding: 16px 32px;
+  background: linear-gradient(135deg, var(--color-health) 0%, rgba(26, 111, 168, 0.8) 100%);
+  color: #07101A;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 30px rgba(26, 111, 168, 0.3);
+  border: none;
+  cursor: pointer;
+}
+
+.btn-glow-health:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 40px rgba(26, 111, 168, 0.5);
+}
+
+
+/* =========================================
+   MOBILE RESPONSIVENESS
+   ========================================= */
+@media (max-width: 1024px) {
+  .split-content-layout {
+    grid-template-columns: 1fr;
+  }
+  .glass-image-wrapper {
+    aspect-ratio: 16/9;
+  }
+}
+
+@media (max-width: 768px) {
+  .school-hero-section {
+    min-height: 75vh;
+  }
+  
+  .school-hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .school-hero-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .school-hero-actions {
+    flex-direction: column;
+  }
+  
+  .school-content-section {
+    padding: 60px 16px;
+  }
+  
+  .why-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .school-final-cta h2 {
+    font-size: 2rem;
+  }
+
+  .glass-card, .glass-panel {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  @media (hover: none) {
+    .glass-card:hover, .career-tag:hover {
+      transform: none;
+    }
+    .glass-card:active {
+      transform: scale(0.98);
+    }
+  }
+}

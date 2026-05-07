@@ -1,0 +1,335 @@
+/* --- BÖLÜMLERİMİZ PAGE STYLES --- */
+
+.bolumler-page-container {
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  color: #fff;
+}
+
+/* Hero Section */
+.bolumler-hero-section {
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 80px;
+  overflow: hidden;
+}
+
+.bolumler-hero-bg {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2000&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: brightness(0.4) contrast(1.1);
+  transform: scale(1.05);
+  animation: slowZoom 20s infinite alternate ease-in-out;
+  z-index: 0;
+}
+
+.bolumler-hero-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(to bottom, rgba(7, 16, 26, 0.4) 0%, rgba(7, 16, 26, 1) 100%);
+  z-index: 1;
+}
+
+.bolumler-hero-content {
+  max-width: 800px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.bolumler-badge {
+  display: inline-block;
+  background: rgba(255, 32, 78, 0.15);
+  color: var(--color-secondary);
+  padding: 8px 20px;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 32, 78, 0.3);
+}
+
+.bolumler-hero-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.bolumler-hero-subtitle {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+/* Section Styles */
+.bolumler-section {
+  padding: 80px 0;
+}
+
+.bolumler-section.bg-darker {
+  background: rgba(4, 9, 17, 0.5);
+}
+
+.section-header-centered {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-main-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #fff;
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Schools Nav */
+.bolumler-schools-nav {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.bolumler-school-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 30px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 30px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.bolumler-school-nav-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: #fff;
+}
+
+/* Departments Grid */
+.bolumler-departments-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.bolumler-dept-card {
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.bolumler-dept-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.bolumler-dept-header {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.bolumler-dept-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  color: #fff;
+}
+
+.bolumler-dept-school {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.bolumler-dept-content {
+  padding: 25px 20px;
+}
+
+.bolumler-dept-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #fff;
+}
+
+.bolumler-dept-description {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+}
+
+.bolumler-dept-meta {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.bolumler-dept-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.bolumler-dept-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border: 2px solid;
+  border-radius: 10px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.bolumler-dept-btn:hover {
+  background: currentColor;
+  color: #fff;
+}
+
+/* Info Panel */
+.bolumler-info-panel {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 40px;
+  align-items: center;
+  padding: 50px;
+}
+
+.bolumler-info-content h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #fff;
+}
+
+.bolumler-info-content p {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.8;
+  margin-bottom: 30px;
+}
+
+.bolumler-info-features {
+  display: flex;
+  gap: 25px;
+}
+
+.bolumler-info-feature {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
+}
+
+.bolumler-info-feature svg {
+  color: #00c896;
+}
+
+/* Final CTA */
+.bolumler-final-cta {
+  position: relative;
+  padding: 80px 0;
+  background-image: url('https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2000&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.bolumler-cta-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(7, 16, 26, 0.85);
+}
+
+.bolumler-final-cta h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #fff;
+}
+
+.bolumler-final-cta p {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 30px;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 1024px) {
+  .bolumler-departments-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .bolumler-info-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .bolumler-info-cta {
+    text-align: center;
+  }
+
+  .bolumler-schools-nav {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 768px) {
+  .bolumler-hero-title {
+    font-size: 2rem;
+  }
+
+  .bolumler-hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .bolumler-departments-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .bolumler-info-features {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .section-main-title {
+    font-size: 2rem;
+  }
+}
+
+@keyframes slowZoom {
+  from {
+    transform: scale(1.05);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}

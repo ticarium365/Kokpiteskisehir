@@ -1,0 +1,305 @@
+/* --- OKULLARIMIZ PAGE STYLES --- */
+
+.okullar-page-container {
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  color: #fff;
+}
+
+/* Hero Section */
+.okullar-hero-section {
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 80px;
+  overflow: hidden;
+}
+
+.okullar-hero-bg {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2000&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: brightness(0.4) contrast(1.1);
+  transform: scale(1.05);
+  animation: slowZoom 20s infinite alternate ease-in-out;
+  z-index: 0;
+}
+
+.okullar-hero-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(to bottom, rgba(7, 16, 26, 0.4) 0%, rgba(7, 16, 26, 1) 100%);
+  z-index: 1;
+}
+
+.okullar-hero-content {
+  max-width: 800px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.okullar-badge {
+  display: inline-block;
+  background: rgba(255, 32, 78, 0.15);
+  color: var(--color-secondary);
+  padding: 8px 20px;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 32, 78, 0.3);
+}
+
+.okullar-hero-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.okullar-hero-subtitle {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+
+/* Section Styles */
+.okullar-section {
+  padding: 80px 0;
+}
+
+.okullar-section.bg-darker {
+  background: rgba(4, 9, 17, 0.5);
+}
+
+.section-header-centered {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.section-main-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #fff;
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Campuses Grid */
+.okullar-campuses-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.okullar-campus-card {
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.okullar-campus-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.okullar-campus-image {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.okullar-campus-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.okullar-campus-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent 50%, rgba(7, 16, 26, 0.9) 100%);
+}
+
+.okullar-campus-badge {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 25px;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.okullar-campus-content {
+  padding: 50px 30px 30px;
+}
+
+.okullar-campus-schools {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 25px;
+}
+
+.okullar-campus-schools li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+.okullar-campus-schools li svg {
+  color: #00c896;
+  flex-shrink: 0;
+}
+
+.okullar-campus-contact {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 20px;
+}
+
+.okullar-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+}
+
+.okullar-contact-item svg {
+  color: var(--color-secondary);
+  flex-shrink: 0;
+}
+
+/* Campus Features Grid */
+.okullar-campus-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.okullar-feature-card {
+  padding: 35px 30px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.okullar-feature-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.okullar-campus-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 32, 78, 0.15);
+  border-radius: 50%;
+  color: var(--color-secondary);
+  margin-bottom: 20px;
+}
+
+.okullar-feature-card h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #fff;
+}
+
+.okullar-feature-card p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Final CTA */
+.okullar-final-cta {
+  position: relative;
+  padding: 80px 0;
+  background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2000&auto=format&fit=crop');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.okullar-cta-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(7, 16, 26, 0.85);
+}
+
+.okullar-final-cta h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #fff;
+}
+
+.okullar-final-cta p {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 30px;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 1024px) {
+  .okullar-campuses-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .okullar-campus-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .okullar-hero-title {
+    font-size: 2rem;
+  }
+
+  .okullar-hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .okullar-campuses-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .okullar-campus-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-main-title {
+    font-size: 2rem;
+  }
+}
+
+@keyframes slowZoom {
+  from {
+    transform: scale(1.05);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}

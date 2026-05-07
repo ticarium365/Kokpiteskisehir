@@ -1,0 +1,344 @@
+/* --- ACADEMIC CALENDAR STYLES --- */
+
+.academic-calendar {
+  padding: 80px 0;
+  background: rgba(4, 9, 17, 0.5);
+}
+
+.calendar-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.calendar-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #fff;
+}
+
+.calendar-subtitle {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Calendar Filters */
+.calendar-filters {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 60px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 12px 24px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 25px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.filter-btn.active {
+  background: var(--color-secondary);
+  border-color: var(--color-secondary);
+  color: #fff;
+}
+
+/* Timeline */
+.calendar-timeline {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.timeline-month {
+  margin-bottom: 50px;
+}
+
+.month-marker {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.month-name {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--color-secondary) 0%, #c41a3e 100%);
+  color: #fff;
+  padding: 12px 32px;
+  border-radius: 30px;
+  font-size: 1.3rem;
+  font-weight: 700;
+  box-shadow: 0 4px 20px rgba(255, 32, 78, 0.3);
+}
+
+.month-events {
+  position: relative;
+  padding-left: 30px;
+  border-left: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.timeline-event {
+  display: flex;
+  gap: 20px;
+  padding: 25px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.timeline-event::before {
+  content: '';
+  position: absolute;
+  left: -36px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-secondary);
+  border: 3px solid rgba(7, 16, 26, 0.8);
+}
+
+.timeline-event:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateX(5px);
+}
+
+.timeline-event.past {
+  opacity: 0.4;
+}
+
+.timeline-event.past:hover {
+  opacity: 0.6;
+}
+
+/* Event Icon */
+.event-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  flex-shrink: 0;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Event Type Colors */
+.event-type-basvuru .event-icon {
+  background: rgba(255, 32, 78, 0.15);
+  color: var(--color-secondary);
+}
+
+.event-type-basvuru::before {
+  background: var(--color-secondary);
+}
+
+.event-type-sinav .event-icon {
+  background: rgba(255, 159, 64, 0.15);
+  color: #ff9f40;
+}
+
+.event-type-sinav::before {
+  background: #ff9f40;
+}
+
+.event-type-egitim .event-icon {
+  background: rgba(0, 180, 216, 0.15);
+  color: #00b4d8;
+}
+
+.event-type-egitim::before {
+  background: #00b4d8;
+}
+
+.event-type-toplanti .event-icon {
+  background: rgba(168, 85, 247, 0.15);
+  color: #a855f7;
+}
+
+.event-type-toplanti::before {
+  background: #a855f7;
+}
+
+.event-type-etkinlik .event-icon {
+  background: rgba(0, 200, 150, 0.15);
+  color: #00c896;
+}
+
+.event-type-etkinlik::before {
+  background: #00c896;
+}
+
+.event-type-toren .event-icon {
+  background: rgba(148, 163, 184, 0.15);
+  color: #94a3b8;
+}
+
+.event-type-toren::before {
+  background: #94a3b8;
+}
+
+/* Event Content */
+.event-content {
+  flex: 1;
+}
+
+.event-date {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.event-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.event-type-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.type-basvuru {
+  background: rgba(255, 32, 78, 0.15);
+  color: var(--color-secondary);
+  border: 1px solid rgba(255, 32, 78, 0.3);
+}
+
+.type-sinav {
+  background: rgba(255, 159, 64, 0.15);
+  color: #ff9f40;
+  border: 1px solid rgba(255, 159, 64, 0.3);
+}
+
+.type-egitim {
+  background: rgba(0, 180, 216, 0.15);
+  color: #00b4d8;
+  border: 1px solid rgba(0, 180, 216, 0.3);
+}
+
+.type-toplanti {
+  background: rgba(168, 85, 247, 0.15);
+  color: #a855f7;
+  border: 1px solid rgba(168, 85, 247, 0.3);
+}
+
+.type-etkinlik {
+  background: rgba(0, 200, 150, 0.15);
+  color: #00c896;
+  border: 1px solid rgba(0, 200, 150, 0.3);
+}
+
+.type-toren {
+  background: rgba(148, 163, 184, 0.15);
+  color: #94a3b8;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+.upcoming-badge {
+  display: inline-block;
+  margin-left: 10px;
+  padding: 4px 12px;
+  background: linear-gradient(135deg, #00c896 0%, #00a875 100%);
+  color: #fff;
+  border-radius: 15px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* No Events */
+.no-events {
+  text-align: center;
+  padding: 60px 20px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.no-events svg {
+  margin-bottom: 20px;
+  opacity: 0.5;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .academic-calendar {
+    padding: 40px 0;
+  }
+
+  .calendar-title {
+    font-size: 1.8rem;
+  }
+
+  .calendar-subtitle {
+    font-size: 1rem;
+  }
+
+  .calendar-filters {
+    gap: 10px;
+  }
+
+  .filter-btn {
+    padding: 10px 18px;
+    font-size: 0.85rem;
+  }
+
+  .month-events {
+    padding-left: 20px;
+  }
+
+  .timeline-event {
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+  }
+
+  .timeline-event::before {
+    left: -26px;
+  }
+
+  .event-icon {
+    width: 45px;
+    height: 45px;
+  }
+
+  .event-title {
+    font-size: 1.1rem;
+  }
+}
