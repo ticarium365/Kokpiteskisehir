@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Calendar, ArrowRight } from 'lucide-react';
+import { Calendar, ArrowRight, Bell, MessageCircle } from 'lucide-react';
 import SEO from '../components/SEO';
 import './HaberlerPage.css';
 
@@ -59,6 +59,19 @@ const HaberlerPage = () => {
                 </div>
               </Link>
             ))}
+          </div>
+
+          {/* Coming Soon Banner */}
+          <div className="content-coming-soon glass-card">
+            <div className="coming-soon-icon"><Bell size={36} /></div>
+            <div className="coming-soon-text">
+              <h3>Daha Fazla Haber Yolda</h3>
+              <p>Etkinlikler, başarılar ve okul haberleri buraya eklenecek. Gelişmelerden haberdar olmak için bizi takip edin.</p>
+            </div>
+            <a href="https://wa.me/905305801525" target="_blank" rel="noopener noreferrer" className="coming-soon-btn">
+              <MessageCircle size={16} />
+              WhatsApp ile Takip Et
+            </a>
           </div>
         </div>
       </section>

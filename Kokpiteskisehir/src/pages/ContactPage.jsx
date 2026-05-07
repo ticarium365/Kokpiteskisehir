@@ -242,24 +242,22 @@ const ContactPage = () => {
             </p>
           </div>
 
-          <div className="map-container glass-panel">
-            {/* Google Maps Embed Placeholder */}
-            {/* 
-              To add Google Maps embed, replace this comment with:
-              <iframe 
-                src="https://www.google.com/maps/embed?pb=..." 
-                width="100%" 
-                height="100%" 
-                style="border:0;" 
-                allowfullscreen="" 
-                loading="lazy"
-              ></iframe>
-            */}
-            <div className="map-placeholder">
-              <MapPin size={48} />
-              <p>Şeker Mh. Gazi Yakup Satar Cd. No:90<br/>26120 Tepebaşı / Eskişehir</p>
-              <a href="https://maps.google.com/?q=Şeker+Mh.+Gazi+Yakup+Satar+Cd.+No:90+26120+Tepebaşı+Eskişehir" target="_blank" rel="noopener noreferrer" className="map-link">
-                <Navigation size={18} style={{ marginRight: '8px' }} /> Google Maps'te Aç
+          <div className="map-container glass-panel" style={{ padding: 0, overflow: 'hidden' }}>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3073.4!2d30.5261!3d39.7765!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cc0e6e0e5e9999%3A0x1!2zU8OcS0VSIE1ILiBHQVpJIFlBS1VQIFNBVEFSIENELiBOTzo5MCBURVBFQsWeSSBFU0tJxZ5FSElSIFRVUktFWQ!5e0!3m2!1str!2str!4v1700000000000!5m2!1str!2str"
+              width="100%"
+              height="100%"
+              style={{ border: 0, display: 'block', minHeight: '450px', filter: 'invert(92%) hue-rotate(180deg) brightness(0.85) contrast(0.9)' }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Kokpit Okulları Kampüs Konumu"
+            ></iframe>
+            <div className="map-address-bar">
+              <MapPin size={16} />
+              <span>Şeker Mh. Gazi Yakup Satar Cd. No:90, 26120 Tepebaşı / Eskişehir</span>
+              <a href="https://maps.google.com/?q=Şeker+Mh.+Gazi+Yakup+Satar+Cd.+No:90+26120+Tepebaşı+Eskişehir" target="_blank" rel="noopener noreferrer" className="map-link-inline">
+                <Navigation size={14} /> Yol Tarifi
               </a>
             </div>
           </div>

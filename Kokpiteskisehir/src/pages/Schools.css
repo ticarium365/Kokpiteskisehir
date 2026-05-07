@@ -14,8 +14,8 @@
 .aviation-overlay {
   background: linear-gradient(135deg, 
     rgba(7, 16, 26, 0.5) 0%, 
-    rgba(11, 25, 44, 0.7) 50%,
-    rgba(7, 16, 26, 0.95) 100%);
+    rgba(80, 20, 15, 0.45) 40%,
+    rgba(7, 16, 26, 0.97) 100%);
 }
 
 .aviation-badge {
@@ -58,8 +58,8 @@
 .matrix-overlay {
   background: linear-gradient(135deg, 
     rgba(7, 16, 26, 0.5) 0%, 
-    rgba(11, 25, 44, 0.7) 50%,
-    rgba(7, 16, 26, 0.95) 100%);
+    rgba(10, 55, 30, 0.45) 40%,
+    rgba(7, 16, 26, 0.97) 100%);
 }
 
 .matrix-badge {
@@ -121,8 +121,8 @@
 .health-overlay {
   background: linear-gradient(135deg, 
     rgba(7, 16, 26, 0.5) 0%, 
-    rgba(11, 25, 44, 0.7) 50%,
-    rgba(7, 16, 26, 0.95) 100%);
+    rgba(10, 40, 80, 0.45) 40%,
+    rgba(7, 16, 26, 0.97) 100%);
 }
 
 .health-badge {
