@@ -3,3 +3,8 @@ export * from "./duyurular";
 export * from "./etkinlikler";
 export * from "./fotogaleri";
 export * from "./videogaleri";
+export * from "./site_ayarlari";
+export * from "./slider";
+export * from "./ekip";
+export * from "./sayfa_icerikleri";
+export * from "./kullanicilar";
